@@ -1,0 +1,46 @@
+Pizza for Students project outline
+
+0. User profile
+   - User will be profiled using social media information (need to check for APIs and data which we can get this way)
+     - Facebook
+     - 4[]
+     - other ideas?
+   - Prompt form
+     - Assesing user in scale, e.g.
+       - Do you like old stuff (1..5)?
+       - Do you enjoy exercise (1..5)?
+       etc.
+       ...
+   - Propose A/B
+     - Update feature vector basing on choice
+     (?) can later ask about satisfaction (probably will not have time for such fancies)
+
+1. System scope
+   - What to visit in Edinburgh (museums, monuments)
+   - Where to eat what person likes (yelp)
+   - Which city to visit flying from x basing likes?
+   - Use weather prediciton in decision making
+
+2. User feature vector
+<...> // put your ideas inside
+
+3. Data sets
+   - Edinburgh Council (what to visit)
+   - ALISS (interest clubs nearby)
+   - Yelp (mainly for food)
+   - Skyscanner (for flying to see another city)
+   - World Weather Online (www.worldweatheronline.com, making propositions takign weather into account)
+
+4. Method of interference
+   - Probably pattern matching
+
+5. Interface
+		    ..
+Login with Facebook || Fill short prompt
+      	   	    ||
+		    \/
+	Show 2 suggestions (A/B)
+	            ||
+		    ||
+		    \/
+Display more information of chosen suggestion, update feature vector
