@@ -1,0 +1,45 @@
+- Google
+- Bing
+- Here(Nokia)
+
+leafletjs.com
+ - Easy to use 
+ - Lightweight
+ - Limited power
+ - Small amount of detail - data can be shifted
+
+openlayers.org
+ - Heavyweight
+ - Not as easy to use
+ - Flexible!
+ - Customizable
+ - Different overlays(campus maps, POIs, etc)
+
+Considerations
+- Google, etc. have caps!
+- Hosted or donwloaded?
+- Projection and conversion
+ - Kartograph
+ - APIs tend to use Web Mercator
+ - If need conversion contact edina! - eg. British National Grid conversion usually introduces error. Not a problem for cities, but buildings can be moved eg. 20-30 meters. 
+
+Get data with coordinates
+ - http://poi.gps-data-team.com/
+
+Use a Gazetteer Service to add coordinates to your data
+ - Unlock Places, Here Places
+
+Unlock Places - unlock.edina.ac.uk/places/queries
+ - Query can be returned as XML, geojson, KML...
+ - Build URL, send, returns data
+
+Unlock Text
+ - generates a list of places from a txt or html file
+ - give website, Unlock Text reads through it, sends back names of all places in the file
+
+Where's the neares hotel? 
+ - Enter Location + Unlock Places or GPS -> Coordinates -> Result List
+ - Geonames feature type: eg. Hotel + Unlock Places -> Coordinates -> Result List
+
+List of APIs, links: 
+gogeo.blogs.edina.ac.uk
