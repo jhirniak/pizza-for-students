@@ -12,10 +12,6 @@ radius=10 (radius of search from the latitude/longitude point, yelp is not speci
 limit=5 (limit of results, min = 1, max = 20)
 ywsid=YUwhntdFiE4O6DNagEBS4w is SID for Yelp API (we would need to register a genuine account to use it in our app)
 
-Example:
-http://api.yelp.com/business_review_search?term=pub&lat=55.968419&long=-3.188782&radius=0.2&limit=5&ywsid=YUwhntdFiE4O6DNagEBS4w
-Find a bars within 0.2km from the Edinburgh (the location is around Leith, if you want to find pub close to Appelton you should change long/lat)
-
 ---
 More:
 API description website
