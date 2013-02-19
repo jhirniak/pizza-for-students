@@ -2,8 +2,8 @@ Feature vector should be represented as dictionary in python for easier access t
 Labels:
 <: means belong to a set
 age <: {'toddler', 'junior', 'teen', 'adult', 'senior'}
-active/steady <: {True, False} // should the activity be outdoor/indoor
-action/peaceful <: {True, False} // should the activity involve fast action (bmx/skateboarding), or just motion(marathons/walking)
+active/steady <: {True, False}
+action/peaceful <: {True, False}
 travels <: {0..9} // how much person is inclined for travels
 exploration <: {0..9} // how much person likes to see new things
 friends <: {0..9} // should be things involving than one person suggested
