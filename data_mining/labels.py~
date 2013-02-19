@@ -1,0 +1,11 @@
+sports = ['dance', 'tennis', 'golf', 'softplay', 'coached activities', \
+          'climbing', 'abseiling', 'swim', 'gym', 'badminton', 'gymnastics', \
+          'kayaking', 'massage', 'skateboard', 'biking', 'football', \ 
+          'pitch and putt', 'basketball', 'cycling', 'rugby', 'croquet', \ 
+          'fitness', 'bowling', 'aerobic', 'equipment hire', \ 
+          'hillwalking', 'orienteering', 'hockey', 'powerboat', \
+          'certificated courses', 'cricket', 'football', 'fencing', \
+          'table tennis', 'squash', 'dinghy cruising', 'water sports', \
+          'coaching', 'bouldering', 'sailing', 'american football', 'bmx', \
+          'short tennis', 'athletics', 'turkish baths',  'judo', 'canoeing', \
+          'racing', 'aquafit', 'kayaking', 'volleyball', 'aerial assault ', 'older adult activities', 'school holiday activities', 'skating'            ]

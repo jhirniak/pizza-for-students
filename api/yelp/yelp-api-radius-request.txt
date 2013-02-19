@@ -1,0 +1,18 @@
+--- NOTICE FROM COUNCIL OF EDINBURGH CITY ---
+--- Do not run any scripts on this API SID because there is limit of request a day and I want to be able to test it without registering a second account what is sooo laborous task that I would rather kill myself than do that. ---
+--- END OF NOTICE ---
+
+Link:
+http://api.yelp.com/business_review_search?term=pub&lat=55.968419&long=-3.188782&radius=10&limit=5&ywsid=YUwhntdFiE4O6DNagEBS4w
+
+Breakdown:
+term=pub (what you want to search for)
+lat=55.968419&long=-3.188782 (latitude and longitude coordinates)
+radius=10 (radius of search from the latitude/longitude point, yelp is not specific about what are units of radius and they said that basing on the geolocation of search it may have different result, for rural area and city centre for example, I estimated that radius is in km when measured as straight line on the map)
+limit=5 (limit of results, min = 1, max = 20)
+ywsid=YUwhntdFiE4O6DNagEBS4w is SID for Yelp API (we would need to register a genuine account to use it in our app)
+
+---
+More:
+API description website
+http://www.yelp.com/developers/documentation/search_api#searchBB
