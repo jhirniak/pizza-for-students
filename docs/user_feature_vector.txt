@@ -1,0 +1,11 @@
+Feature vector should be represented as dictionary in python for easier access to data.
+Labels:
+<: means belong to a set
+age <: {'toddler', 'junior', 'teen', 'adult', 'senior'}
+active/steady <: {True, False}
+action/peaceful <: {True, False}
+travels <: {0..9} // how much person is inclined for travels
+exploration <: {0..9} // how much person likes to see new things
+friends <: {0..9} // should be things involving than one person suggested
+nature <: {0..9} // is person liking more urban or nature stuff
+learning <: {0..9} // does person wants to learn (art galleries, science fairs, museums, some festivals, or wants to just have fun pubs, clubs etc.)
