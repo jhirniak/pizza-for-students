@@ -1,0 +1,4 @@
+http://www.yelp.co.uk/developers/getting_started/display_requirements
+
+In very short and inprecise:
+We can use it, but every time we use it we have to add Yelp logo that everyone would know that data came from Yelp as well as we have to display ratings of the points on the map, but this is absolutely ok because we want them in our recommendation anyway.
