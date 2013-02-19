@@ -1,0 +1,58 @@
+
+ <!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+ <!--[if lte IE 8]>
+     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" />
+ <![endif]-->
+</head>
+<body>
+<div id="map" style="width: 1080px; height: 700px"></div>
+
+<script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+<script>
+
+var map = L.map('map').setView([55.945, -3.187], 13);
+
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 18
+}).addTo(map);
+
+L.marker([55.944892, -3.186694]).addTo(map)
+    .bindPopup('Inspace')
+    .openPopup();
+
+L.marker([55.944460,-3.186979]).addTo(map)
+    .bindPopup('Appleton Tower')
+    .openPopup();
+
+function populateMap(x, y, name) {
+    for (var i=0;i<cars.length;i++) { 
+    L.marker([x-coordinate,y-coordinate]).addTo(map)
+        .bindPopup(name)
+        .openPopup();
+    }
+}
+
+
+var myStyle = {
+    "color": "#ff7800",
+    "weight": 5,
+    "opacity": 0.65
+};
+
+var edinburgh = {
+        "type" : "Feature",
+        "properties": {
+        "name": "Edinburgh",
+        "popupContent": "Welcome to Edinburgh!"
+}};
+
+//L.geoJson(edinburgh, {style: myStyle}).addTo(map);
+
+
+</script>
+</body>
+</html>
