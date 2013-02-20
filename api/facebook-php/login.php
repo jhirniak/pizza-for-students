@@ -34,8 +34,8 @@
             $interestst[$user_profile['likes']['data'][$i]["category"]]=1;
         
        //for($i=0;$i<sizeof($interestst);$i++)
-           echo print_r($interestst);
-        }
+           print_r($interestst);
+           }
         else
             echo "None";
 

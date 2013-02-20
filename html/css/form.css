@@ -6,7 +6,7 @@ div#form-container{
     background-color: #F0E0B2;
     border-radius: 4px;
     border-style: solid;
-    height: 500px;
+
     padding: 10px;
 }
 
@@ -27,9 +27,8 @@ div.group{
     margin-right: auto;
 }
 
-.ui-button.ui-widget{
-     height: 30px;
-     width: 50px;
+div#poscont{
+    text-align: center;
 }
 
 .ui-button.ui-widget .ui-button-text{

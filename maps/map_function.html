@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <title>CloudMade JavaScript API example</title>
+</head>
+<body>
+  
+  <div id="cm-example" style="width: 900px; height: 700px; float : left"></div>
+  <div id="panel" style="width: 100px; height : 500px; float: left; padding-left: 10px"></div>
+  <div id="panel2" style="width: 100px; height : 500px; float: left; padding-left: 10px"></div>
+  
+  <script type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
+  <script type="text/javascript">
+function(top3List, generalInterestList) {
+
+    var cloudmade = new CM.Tiles.CloudMade.Web({key: 'eb9238c6dc0248efb8cc8d6a285df878'});
+    var map = new CM.Map('cm-example', cloudmade);
+    map.setCenter(new CM.LatLng(55.945, -3.187), 15);
+
+    //Out favourite place
+    var infList = new Array();
+    infList[0] = {name: "Appleton Tower", coordinates: [55.944436,-3.186819]};
+    infList[1] = {name: "Inspace", coordinates: [55.944904, -3.186733]};
+    
+    var museumList = generalInterestList[0];
+    var parkList = generalInterestList[1];
+    var historicalList = generalInterestList[2];
+    var cemetaryList = generalInterestList[3];
+    var outdoorEducationList = generalInterestList[4];
+    var communityCentreList = generalInterestList[5];
+    var mobileLibraryList = generalInterestList[6];
+    var playAreaList = generalInterestList[7];
+    var sportsList = generalInterestList[8];
+    
+    //museumList[0] = {name: "National Museum of Scotland", coordinates: [55.946899,-3.190584]};
+    
+//Routing
+    var directions = new CM.Directions(map, "panel", 'eb9238c6dc0248efb8cc8d6a285df878')
+    var waypoints = [new CM.LatLng(top3List[0].coordinates[0], top3List[0].coordinates[1]), new CM.LatLng(top3List[1].coordinates[0],top3List[1].coordinates[1])];
+    directions.loadFromWaypoints(waypoints, {
+        travelMode : 'foot', 
+        preserveViewport : 'True', 
+        draggableWaypoints : 'True'
+    }); 
+
+    var directions2 = new CM.Directions(map, "panel2", 'eb9238c6dc0248efb8cc8d6a285df878')
+    var waypoints2 = [new CM.LatLng(top3List[1].coordinates[0],top3List[1].coordinates[1]), new CM.LatLng(top3List[2].coordinates[0], top3List[2].coordinates[1])];
+    directions2.loadFromWaypoints(waypoints2, {
+        travelMode : 'foot', 
+        preserveViewport : 'True', 
+        draggableWaypoints : 'True'
+    }); 
+
+//Icons   
+    var infIcon = new CM.Icon();
+    infIcon.image = "markers/computers.png";
+    infIcon.iconSize = new CM.Size(32, 37);
+    
+    museumIcon = new CM.Icon(infIcon, "markers/museum.png");
+    parksIcon = new CM.Icon(infIcon, "markers/park.png");
+    historicalIcon = new CM.Icon(infIcon, "markers/historical.png");
+    cemetaryIcon = new CM.Icon(infIcon, "markers/grave.png");
+    outdoorEducationIcon = new CM.Icon(infIcon, "markers/outdooreducation.png");
+    communityCentreIcon = new CM.Icon(infIcon, "markers/communitycenter.png");
+    mobileLibraryIcon = new CM.Icon(infIcon, "markers/library.png");
+    playAreasIcon = new CM.Icon(infIcon, "markers/playground.png");
+    sportsIcon = new CM.Icon(infIcon, "markers/sports.png");
+
+//Set Markers
+    for (var i = 0; i < infList.length; i++) {
+        var myMarkerLatLng = new CM.LatLng(infList[i].coordinates[0], infList[i].coordinates[1]);
+        var myMarker = new CM.Marker(myMarkerLatLng, {
+	    title: infList[i].name,
+            icon: infIcon
+        });
+        map.addOverlay(myMarker);
+    }
+
+    for (var i = 0; i < museumList.length; i++) {
+        var myMarkerLatLng = new CM.LatLng(museumList[i].coordinates[0], museumList[i].coordinates[1]);
+        var myMarker = new CM.Marker(myMarkerLatLng, {
+	    title: museumList[i].name,
+            icon: museumIcon
+        });
+        map.addOverlay(myMarker);
+    }
+    
+
+    for (var i = 0; i < parkList.length; i++) {
+        var myMarkerLatLng = new CM.LatLng(parkList[i].coordinates[0], parkList[i].coordinates[1]);
+        var myMarker = new CM.Marker(myMarkerLatLng, {
+	    title: parkList[i].name,
+            icon: parksIcon
+        });
+        map.addOverlay(myMarker);
+    }
+
+    for (var i = 0; i < historicalList.length; i++) {
+        var myMarkerLatLng = new CM.LatLng(historicalList[i].coordinates[0], historicalList[i].coordinates[1]);
+        var myMarker = new CM.Marker(myMarkerLatLng, {
+	    title: historicalList[i].name,
+            icon: historicalIcon
+        });
+        map.addOverlay(myMarker);
+    }
+
+    for (var i = 0; i < cemetaryList.length; i++) {
+        var myMarkerLatLng = new CM.LatLng(cemetaryList[i].coordinates[0], cemetaryList[i].coordinates[1]);
+        var myMarker = new CM.Marker(myMarkerLatLng, {
+	    title: cemetaryList[i].name,
+            icon: cemetaryIcon
+        });
+        map.addOverlay(myMarker);
+    }
+
+    for (var i = 0; i < outdoorEducationList.length; i++) {
+        var myMarkerLatLng = new CM.LatLng(outdoorEducationList[i].coordinates[0], outdoorEducationList[i].coordinates[1]);
+        var myMarker = new CM.Marker(myMarkerLatLng, {
+	    title: outdoorEducationList[i].name,
+            icon: outdoorEducationIcon
+        });
+        map.addOverlay(myMarker);
+    }
+
+    for (var i = 0; i < communityCentreList.length; i++) {
+        var myMarkerLatLng = new CM.LatLng(communityCentreList[i].coordinates[0], communityCentreList[i].coordinates[1]);
+        var myMarker = new CM.Marker(myMarkerLatLng, {
+	    title: communityCentreList[i].name,
+            icon: communityCentreIcon
+        });
+        map.addOverlay(myMarker);
+    }
+
+    for (var i = 0; i < mobileLibraryList.length; i++) {
+        var myMarkerLatLng = new CM.LatLng(mobileLibraryList[i].coordinates[0], mobileLibraryList[i].coordinates[1]);
+        var myMarker = new CM.Marker(myMarkerLatLng, {
+	    title: mobileLibraryList[i].name,
+            icon: mobileLibraryIcon
+        });
+        map.addOverlay(myMarker);
+    }
+
+    for (var i = 0; i < playAreaList.length; i++) {
+        var myMarkerLatLng = new CM.LatLng(playAreaList[i].coordinates[0], playAreaList[i].coordinates[1]);
+        var myMarker = new CM.Marker(myMarkerLatLng, {
+	    title: playAreaList[i].name,
+            icon: playAreasIcon
+        });
+        map.addOverlay(myMarker);
+    }
+
+    for (var i = 0; i < sportsList.length; i++) {
+        var myMarkerLatLng = new CM.LatLng(sportsList[i].coordinates[0], sportsList[i].coordinates[1]);
+        var myMarker = new CM.Marker(myMarkerLatLng, {
+	    title: sportsList[i].name,
+            icon: sportsIcon
+        });
+        map.addOverlay(myMarker);
+    }
+}
+  </script>
+
+</body>
+</html>
