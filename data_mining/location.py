@@ -93,7 +93,7 @@ class Description:
         self.description = description
     
 class Location(Point, Rating, Feature, Description):
-    def __init__(self, location, cat, name, rating=[], feature=[], description=''):
+    def __init__(self, location, cat='', name='', rating=[], feature=[], description=''):
         Point.__init__(self, location.x, location.y)
         self.name = name
         self.type = cat
