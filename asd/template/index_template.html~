@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}If you want to know what to do today, care to answer a few questions:{% endblock %}
+{% block content %}
+<p>Please fill in these forms</p>
+{% endblock %}
+{ # each template contains only the code that is unique to that template #}
