@@ -33,10 +33,51 @@
     alert($(":radio[name=age]:checked").val());
     }
     $(function(){
-        $( "#radioset1" ).buttonset();
-        $( "#radioset2" ).buttonset();
-        $( "#shareposition" ).button();
+        $("#radioset1").buttonset();
+        $("#radioset2").buttonset();
+        $("#shareposition").button();
+        $("#mapholder").hide();
     });
+</script>
+
+<script>
+var x=document.getElementById("mapholder");
+var geoLat=document.getElementById("geoLat");
+var geoLong=document.getElementById("geoLong");
+
+function getLocation(){
+  if (navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(showPosition);
+  }
+  else{x.innerHTML="";}
+  }
+function showPosition1(position){
+  geoLat.innerHTML=position.coords.latitude;
+  geoLong.innerHTML=position.coords.longitude;	
+  
+}
+  
+function showPosition(position){
+    //var latlon=position.coords.latitude+","+position.coords.longitude;
+    $("#mapholder").show();
+    $("#shareposition").hide();
+    create_map(position.coords.latitude,position.coords.longitude);
+}
+  
+function create_map(lat,longt){
+    var cloudmade = new CM.Tiles.CloudMade.Web({key: 'eb9238c6dc0248efb8cc8d6a285df878'});
+    var map = new CM.Map('mapholder', cloudmade);
+    map.setCenter(new CM.LatLng(55.945, -3.187), 15);
+    
+    var myMarkerLatLng = new CM.LatLng(lat,longt);
+        var myMarker = new CM.Marker(myMarkerLatLng, {
+	    title: "My location"
+        });
+        map.addOverlay(myMarker);
+        
+}
+
+
 </script>
 </head>
 <body onload="form()">
@@ -172,47 +213,8 @@
                 <tr>
                     <td>Share position for better results</td>
                     <td>
-                        <div id="mapholder">
-                            <input type="button" id="shareposition" onclick="getLocation()" value="Share position">
-                        </div>
-<script>
-var x=document.getElementById("mapholder");
-var geoLat=document.getElementById("geoLat");
-var geoLong=document.getElementById("geoLong");
-
-function getLocation(){
-  if (navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(showPosition);
-  }
-  else{x.innerHTML="";}
-  }
-function showPosition1(position){
-  geoLat.innerHTML=position.coords.latitude;
-  geoLong.innerHTML=position.coords.longitude;	
-  
-}
-  
-function showPosition(position)
-  {
-  //var latlon=position.coords.latitude+","+position.coords.longitude;
-  create_map(position.coords.latitude,position.coords.longitude);
-  }
-  
-function create_map(lat,longt){
-    var cloudmade = new CM.Tiles.CloudMade.Web({key: 'eb9238c6dc0248efb8cc8d6a285df878'});
-    var map = new CM.Map('mapholder', cloudmade);
-    map.setCenter(new CM.LatLng(55.945, -3.187), 15);
-    
-    var myMarkerLatLng = new CM.LatLng(lat,longt);
-        var myMarker = new CM.Marker(myMarkerLatLng, {
-	    title: "My location"
-        });
-        map.addOverlay(myMarker);
-}
-
-
-</script>
-
+                        <input type="button" id="shareposition" onclick="getLocation()" value="Share position">
+                        <div id="mapholder" style="width: 280px; height: 280px;"></div>
                     </td>
                     <td></td>
                 </tr>
