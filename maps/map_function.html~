@@ -6,33 +6,45 @@
 <body>
   
   <div id="cm-example" style="width: 900px; height: 700px; float : left"></div>
-    <div id="panel" style="width: 200px; height : 500px; float: left; padding-left: 10px"></div>
-  <div id="panel2" style="width: 200px; height : 500px; float: left; padding-left: 10px"></div>
+  <div id="panel" style="width: 100px; height : 350px; float: left; padding-left: 10px"></div>
+  <div id="panel2" style="width: 100px; height : 350px; float: left; padding-left: 10px"></div>
   
   <script type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
   <script type="text/javascript">
+function(top3List, generalInterestList) {
+
     var cloudmade = new CM.Tiles.CloudMade.Web({key: 'eb9238c6dc0248efb8cc8d6a285df878'});
     var map = new CM.Map('cm-example', cloudmade);
     map.setCenter(new CM.LatLng(55.945, -3.187), 15);
 
+    //Out favourite place
     var infList = new Array();
     infList[0] = {name: "Appleton Tower", coordinates: [55.944436,-3.186819]};
     infList[1] = {name: "Inspace", coordinates: [55.944904, -3.186733]};
-
-    var museumList = new Array();
-    museumList[0] = {name: "National Museum of Scotland", coordinates: [55.946899,-3.190584]};
+    
+    var museumList = generalInterestList[0];
+    var parkList = generalInterestList[1];
+    var historicalList = generalInterestList[2];
+    var cemetaryList = generalInterestList[3];
+    var outdoorEducationList = generalInterestList[4];
+    var communityCentreList = generalInterestList[5];
+    var mobileLibraryList = generalInterestList[6];
+    var playAreaList = generalInterestList[7];
+    var sportsList = generalInterestList[8];
+    
+    //museumList[0] = {name: "National Museum of Scotland", coordinates: [55.946899,-3.190584]};
     
 //Routing
     var directions = new CM.Directions(map, "panel", 'eb9238c6dc0248efb8cc8d6a285df878')
-    var waypoints = [new CM.LatLng(museumList[0].coordinates[0], museumList[0].coordinates[1]), new CM.LatLng(infList[0].coordinates[0],infList[0].coordinates[1])];
+    var waypoints = [new CM.LatLng(top3List[0].coordinates[0], top3List[0].coordinates[1]), new CM.LatLng(top3List[1].coordinates[0],top3List[1].coordinates[1])];
     directions.loadFromWaypoints(waypoints, {
         travelMode : 'foot', 
         preserveViewport : 'True', 
         draggableWaypoints : 'True'
     }); 
 
-    var directions2 = new CM.Directions(map, "panel", 'eb9238c6dc0248efb8cc8d6a285df878')
-    var waypoints2 = [new CM.LatLng(infList[1].coordinates[0],infList[1].coordinates[1]), new CM.LatLng(museumList[0].coordinates[0], museumList[0].coordinates[1])];
+    var directions2 = new CM.Directions(map, "panel2", 'eb9238c6dc0248efb8cc8d6a285df878')
+    var waypoints2 = [new CM.LatLng(top3List[1].coordinates[0],top3List[1].coordinates[1]), new CM.LatLng(top3List[2].coordinates[0], top3List[2].coordinates[1])];
     directions2.loadFromWaypoints(waypoints2, {
         travelMode : 'foot', 
         preserveViewport : 'True', 
@@ -145,7 +157,7 @@
         });
         map.addOverlay(myMarker);
     }
-
+}
   </script>
 
 </body>
