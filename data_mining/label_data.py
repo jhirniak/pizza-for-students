@@ -123,7 +123,7 @@ fieldmap = bools_to_one('Facilities')
 fieldmap.update({'name' : 'Name', 'address' : 'Address', 'features' : 'Facilities'})
 parks = process_data(csvdata[1], fieldmap=fieldmap, fixed={'type' : 'Park', 'nature' : True, 'learning' : True}, default={'location' : '51.0, -3.0'})
 
-fieldmap = bools_to_one('Information')
+fieldmap = bools_to_one('Monument')
 fieldmap.update({'name' : 'Monument', 'area': 'Location', 'features' : 'Information', 'location' : 'Location map'})
 monuments = process_data(csvdata[2], fieldmap=fieldmap, fixed={'type' : 'History', 'travel' : True, 'exploration' : True, 'learning' : True}, default={'location' : '51.0, -3.0'})
 
