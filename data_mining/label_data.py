@@ -20,6 +20,10 @@ bools = ['sport', 'brave', 'travel', 'friendly', 'exploration', 'nature', 'learn
 coordinates = ['location']
 defined = names + sets + bools + coordinates
 
+def diff(a, b):
+        b = set(b)
+        return [aa for aa in a if aa not in b]
+
 # field map our_field_name : field_name_in_file
 # defaults our_field_name : default_value
 # fixed - always set to this value
@@ -27,11 +31,11 @@ defined = names + sets + bools + coordinates
 def process_data(csvfile, fieldmap, fixed={}, default={}, delimiter=',', quotechar='"'):
     # Make sure all defined will be there with proper value
     for d in defined:
-        if d not in fieldmap and d not in fixed:
+        if d not in fieldmap:
             if d in bools:
                 fixed.update({d : False})
             elif d in coordinates:
-                fixed.update({d : '51.0,-3.0'})
+                fixed.update({d : Point(51.0,-3.0)})
             else:
                 fixed.update({d : ''})
             continue
@@ -40,7 +44,7 @@ def process_data(csvfile, fieldmap, fixed={}, default={}, delimiter=',', quotech
             if d in bools:
                 default.update({d : False})
             elif d in coordinates:
-                default.update({d : '51.0,-3.0'})
+                default.update({d : Point(51.0,-3.0)})
             else:
                 default.update({d : ''})
 
@@ -58,11 +62,7 @@ def process_data(csvfile, fieldmap, fixed={}, default={}, delimiter=',', quotech
         
         obj.update(fixed)
             
-        for field in fieldmap:
-            if field in fixed:
-                obj.update({ field : fixed[field] })
-                break
-
+        for field in diff(fieldmap, fixed):
             if fieldmap[field] != None:
                 cell = row[fieldmap[field]]
             else:
@@ -70,9 +70,7 @@ def process_data(csvfile, fieldmap, fixed={}, default={}, delimiter=',', quotech
 
             if cell in [None, ''] and field in default:
                 value = default[field]
-            else:
-                value = False if field in bools else ''
-
+                    
             if field in sets:
                 exec ('accepted = ' + field) in globals(), locals()
                 value = []
