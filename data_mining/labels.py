@@ -1,9 +1,20 @@
-sport = set(['skating', 'golf', 'coached activities', 'dance', 'judo', 'water sports', 'badminton', 'gymnastics', 'softplay', 'certificated courses', 'bowling', 'abseiling', 'pitch and putt', 'basketball', 'cycling', 'canoeing', 'aerobic', 'fencing', 'tennis', 'coaching', 'orienteering', 'hockey', 'croquet', 'powerboat', 'swim', 'cricket', 'gym', 'football', 'hillwalking', 'table tennis', 'dinghy cruising', 'bouldering', 'american football', 'climbing', 'bmx', 'short tennis', 'school holiday activities', 'turkish baths', 'equipment hire', 'rugby', 'sailing', 'racing', 'aquafit', 'kayaking', 'skateboard', 'volleyball', 'aerial assault ', 'older adult activities', 'squash', 'fitness', 'athletics', 'biking', 'massage'])
+# below are sets of all possible values
+# areas
+types = ['park', 'muesum', 'art gallery']
+outdoors = ['park']
+age_groups = ['toddler', 'junior', 'teen', 'student', 'adult', 'senior']
+activities = ['skating', 'golf', 'canoeing', 'dance', 'water sports', 'fitness', 'badminton', 'gymnastics', 'softplay', 'certificated courses', 'abseiling', 'pitch and putt', 'basketball', 'cycling', 'coached activities', 'aerobic', 'fencing', 'tennis', 'coaching', 'orienteering', 'hockey', 'croquet', 'powerboat', 'swim', 'cricket', 'gym', 'football', 'hillwalking', 'table tennis', 'dinghy cruising', 'bouldering', 'american football', 'climbing', 'bmx', 'short tennis', 'athletics', 'turkish baths', 'equipment hire', 'judo', 'sailing', 'racing', 'aquafit', 'kayaking', 'skateboard', 'rugby', 'volleyball', 'aerial assault ', 'older adult activities', 'squash', 'bowling', 'school holiday activities', 'biking', 'massage']
+features = ['dance studio', 'bmx area', 'cafe', 'balancing beam', 'basketball', 'ball court', 'swimming pool', 'tennis', 'ball end', 'bike track', 'ballcourt', 'bubble pool', 'graffiti wall', 'play area', 'gym', 'football', 'table tennis', 'climbing frame', 'fenced court', 'roundabout', 'bmx', 'skateboard', 'pump track', 'basket ball', 'slide', 'table tennis table', 'swing', 'seating area']
+# profile_keys = ['sport', 'brave', 'travel', 'friendly', 'exploration', 'nature', 'learning']
+# profile = { p : False for p in profile_keys }
 
-playarea = [ ['ballcourt', 'ball court'], , 'skateboard', 'graffiti',  'bmx', ['basketball', 'basket ball'], 'tennis', 'bike' ]
-playarea_items = [ 'swing', 'slide', 'climbing', 'roundabout', 'play area', 'bike', 'pump track', 'ball end', 'graffiti wall', 'table tennis table', 'fenced court', 'net', 'balancing beam', 'bike track', 'seating' ]
-
-age = ['teen','toddler', 'junior']
-
-# museums and galleries, just list of museums labelled as museums and galleries?
-# parks and green spaces labelled as parks?
+# satisfiers
+# bools = ['sport', 'brave', 'travel', 'friendly', 'exploration', 'nature', 'learning']
+sport = []
+brave = []
+travel = []
+friendly = []
+exploration = []
+nature = []
+learning = []
+bools = ['sport', 'brave', 'travel', 'friendly', 'exploration', 'nature', 'learning']

@@ -1,0 +1,8 @@
+# statics
+import random
+
+toddler = 0; junior = 1; teen = 2; student = 3; adult = 4; senior = 5
+
+user_example = { age : student, active : True, risk : False, travel : 5, exploration : 5, nature : 5, learning : 5 }
+test_users = [ { age : random.randint(0,6),
+                 True if random.random() > 0.5 else False, age : random.randint(0,10)
