@@ -27,9 +27,8 @@ div.group{
     margin-right: auto;
 }
 
-.ui-button.ui-widget{
-     height: 30px;
-     width: 50px;
+div#poscont{
+    text-align: center;
 }
 
 .ui-button.ui-widget .ui-button-text{

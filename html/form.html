@@ -76,8 +76,6 @@ function create_map(lat,longt){
         map.addOverlay(myMarker);
         
 }
-
-
 </script>
 </head>
 <body onload="form()">
@@ -213,8 +211,10 @@ function create_map(lat,longt){
                 <tr>
                     <td>Share position for better results</td>
                     <td>
+                        <div id="poscont">
                         <input type="button" id="shareposition" onclick="getLocation()" value="Share position">
-                        <div id="mapholder" style="width: 280px; height: 280px;"></div>
+                        <div id="mapholder" style="width: 270px; height: 280px;"></div>
+                        </div>
                     </td>
                     <td></td>
                 </tr>
@@ -222,7 +222,6 @@ function create_map(lat,longt){
         <input name="geoLat" id="geoLat" type="hidden"/>
         <input name="geoLong" id="geoLong" type="hidden"/>
         </form>
-        <button onclick="getLocation()">Try It</button>
     </div>
     
 </body>
