@@ -24,116 +24,141 @@
     alert($(":radio[name=age]:checked").val());
     }
     $(function(){
-        $( "#button" ).button();
-	$( "#radioset" ).buttonset();
+        $( "#radioset1" ).buttonset();
+        $( "#radioset2" ).buttonset();        
     });
 </script>
 </head>
 <body onload="form()">
     <div id="form-container">
         <form action="" method="post" name="user_info">
-            
-            <div class="radiogroup" id="age">
-                <h2>How old are you?</h2>
-                <label><input name="age" type="radio" value="0" checked/></label>
-                <label><input name="age" type="radio" value="1"/></label>
-                <label><input name="age" type="radio" value="2"/></label>
-                <label><input name="age" type="radio" value="3"/></label>
-                <label><input name="age" type="radio" value="4"/></label>
-            </div>
-            
-            <div class="group">
-            <div class="question">active/steady?</div>
-            <div class="radiogroupcontainer">
-                <div id="radioset">
-                    <input type="radio" id="radio1" name="radio"><label for="radio1">Yes</label>
-                    <input type="radio" id="radio2" name="radio" checked="checked"><label for="radio2">No</label>
-                </div>
-            <!--
-            <div class="radiogroup" id="active_steady">
-                <label><input name="active/steady" type="radio" value="0" checked/></label>
-                <label><input name="active/steady" type="radio" value="1"/></label>
-            </div>
-                -->
-            </div>
-            </div>
-            
-            <div class="radiogroup" id="action_peacefu">
-                <h2>action/peaceful?</h2>
-                <label><input name="action/peaceful" type="radio" value="0" checked/></label>
-                <label><input name="action/peaceful" type="radio" value="1"/></label>
-            </div>
-
-            <div class="radiogroup" id="travels">
-                <h2>travels?</h2>
-                <label><input name="travels" type="radio" value="0" checked/></label>
-                <label><input name="travels" type="radio" value="1"/></label>
-                <label><input name="travels" type="radio" value="2"/></label>
-                <label><input name="travels" type="radio" value="3"/></label>
-                <label><input name="travels" type="radio" value="4"/></label>
-                <label><input name="travels" type="radio" value="5"/></label>
-                <label><input name="travels" type="radio" value="6"/></label>
-                <label><input name="travels" type="radio" value="7"/></label>
-                <label><input name="travels" type="radio" value="8"/></label>
-                <label><input name="travels" type="radio" value="9"/></label>
-            </div>
-
-            <div class="radiogroup" id="exploration">
-                <h2>exploration?</h2>
-                <label><input name="exploration" type="radio" value="0" checked/></label>
-                <label><input name="exploration" type="radio" value="1"/></label>
-                <label><input name="exploration" type="radio" value="2"/></label>
-                <label><input name="exploration" type="radio" value="3"/></label>
-                <label><input name="exploration" type="radio" value="4"/></label>
-                <label><input name="exploration" type="radio" value="5"/></label>
-                <label><input name="exploration" type="radio" value="6"/></label>
-                <label><input name="exploration" type="radio" value="7"/></label>
-                <label><input name="exploration" type="radio" value="8"/></label>
-                <label><input name="exploration" type="radio" value="9"/></label>
-            </div>
-
-            <div class="radiogroup" id="friends">
-                <h2>friends?</h2>
-                <label><input name="friends" type="radio" value="0" checked/></label>
-                <label><input name="friends" type="radio" value="1"/></label>
-                <label><input name="friends" type="radio" value="2"/></label>
-                <label><input name="friends" type="radio" value="3"/></label>
-                <label><input name="friends" type="radio" value="4"/></label>
-                <label><input name="friends" type="radio" value="5"/></label>
-                <label><input name="friends" type="radio" value="6"/></label>
-                <label><input name="friends" type="radio" value="7"/></label>
-                <label><input name="friends" type="radio" value="8"/></label>
-                <label><input name="friends" type="radio" value="9"/></label>
-            </div>
-
-            <div class="radiogroup" id="nature">
-                <h2>nature?</h2>
-                <label><input name="nature" type="radio" value="0" checked/></label>
-                <label><input name="nature" type="radio" value="1"/></label>
-                <label><input name="nature" type="radio" value="2"/></label>
-                <label><input name="nature" type="radio" value="3"/></label>
-                <label><input name="nature" type="radio" value="4"/></label>
-                <label><input name="nature" type="radio" value="5"/></label>
-                <label><input name="nature" type="radio" value="6"/></label>
-                <label><input name="nature" type="radio" value="7"/></label>
-                <label><input name="nature" type="radio" value="8"/></label>
-                <label><input name="nature" type="radio" value="9"/></label>
-            </div>
-
-            <div class="radiogroup" id="learning">
-                <h2>learning?</h2>
-                <label><input name="learning" type="radio" value="0" checked/></label>
-                <label><input name="learning" type="radio" value="1"/></label>
-                <label><input name="learning" type="radio" value="2"/></label>
-                <label><input name="learning" type="radio" value="3"/></label>
-                <label><input name="learning" type="radio" value="4"/></label>
-                <label><input name="learning" type="radio" value="5"/></label>
-                <label><input name="learning" type="radio" value="6"/></label>
-                <label><input name="learning" type="radio" value="7"/></label>
-                <label><input name="learning" type="radio" value="8"/></label>
-                <label><input name="learning" type="radio" value="9"/></label>
-            </div>
-        
+            <table width="600" border="0">
+                <tr>
+                  <td>I am Younger</td>
+                  <td width="250">
+                        <div class="radiogroup" id="age">
+                            <label><input name="age" type="radio" value="0" checked/></label>
+                            <label><input name="age" type="radio" value="1"/></label>
+                            <label><input name="age" type="radio" value="2"/></label>
+                            <label><input name="age" type="radio" value="3"/></label>
+                            <label><input name="age" type="radio" value="4"/></label>
+                        </div>
+                  </td>
+                  <td>
+                      Older
+                  </td>
+                </tr>
+                <tr>
+                  <td>active/steady?</td>
+                  <td>
+                    <div id="radioset1">
+                        <input type="radio" id="radio1" name="radio"><label for="radio1">Yes</label>
+                        <input type="radio" id="radio2" name="radio"><label for="radio2">No</label>
+                    </div>
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>action/peaceful?</td>
+                  <td>
+                    <div id="radioset2">
+                        <input type="radio" id="radio3" name="action/peaceful" value="True"><label for="radio3">Yes</label>
+                        <input type="radio" id="radio4" name="action/peaceful" value="False"><label for="radio4">No</label>
+                    </div>
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>I prefer not to Travel</td>
+                  <td>
+                      <div class="radiogroup" id="travels">
+                            <label><input name="travels" type="radio" value="0" checked/></label>
+                            <label><input name="travels" type="radio" value="1"/></label>
+                            <label><input name="travels" type="radio" value="2"/></label>
+                            <label><input name="travels" type="radio" value="3"/></label>
+                            <label><input name="travels" type="radio" value="4"/></label>
+                            <label><input name="travels" type="radio" value="5"/></label>
+                            <label><input name="travels" type="radio" value="6"/></label>
+                            <label><input name="travels" type="radio" value="7"/></label>
+                            <label><input name="travels" type="radio" value="8"/></label>
+                            <label><input name="travels" type="radio" value="9"/></label>
+                        </div>
+                  </td>
+                  <td>to Travel</td>
+                </tr>
+                <tr>
+                  <td>I prefer no Exploration</td>
+                  <td>
+                      <div class="radiogroup" id="exploration">
+                            <label><input name="exploration" type="radio" value="0" checked/></label>
+                            <label><input name="exploration" type="radio" value="1"/></label>
+                            <label><input name="exploration" type="radio" value="2"/></label>
+                            <label><input name="exploration" type="radio" value="3"/></label>
+                            <label><input name="exploration" type="radio" value="4"/></label>
+                            <label><input name="exploration" type="radio" value="5"/></label>
+                            <label><input name="exploration" type="radio" value="6"/></label>
+                            <label><input name="exploration" type="radio" value="7"/></label>
+                            <label><input name="exploration" type="radio" value="8"/></label>
+                            <label><input name="exploration" type="radio" value="9"/></label>
+                        </div>
+                  </td>
+                  <td>Exploration</td>
+                </tr>
+                <tr>
+                  <td>friends???</td>
+                  <td>
+                        <div class="radiogroup" id="friends">
+                            <label><input name="friends" type="radio" value="0" checked/></label>
+                            <label><input name="friends" type="radio" value="1"/></label>
+                            <label><input name="friends" type="radio" value="2"/></label>
+                            <label><input name="friends" type="radio" value="3"/></label>
+                            <label><input name="friends" type="radio" value="4"/></label>
+                            <label><input name="friends" type="radio" value="5"/></label>
+                            <label><input name="friends" type="radio" value="6"/></label>
+                            <label><input name="friends" type="radio" value="7"/></label>
+                            <label><input name="friends" type="radio" value="8"/></label>
+                            <label><input name="friends" type="radio" value="9"/></label>
+                        </div>
+                  </td>
+                  <td>???</td>
+                </tr>
+                <tr>
+                  <td>I prefer City</td>
+                  <td>
+                        <div class="radiogroup" id="nature">
+                            <label><input name="nature" type="radio" value="0" checked/></label>
+                            <label><input name="nature" type="radio" value="1"/></label>
+                            <label><input name="nature" type="radio" value="2"/></label>
+                            <label><input name="nature" type="radio" value="3"/></label>
+                            <label><input name="nature" type="radio" value="4"/></label>
+                            <label><input name="nature" type="radio" value="5"/></label>
+                            <label><input name="nature" type="radio" value="6"/></label>
+                            <label><input name="nature" type="radio" value="7"/></label>
+                            <label><input name="nature" type="radio" value="8"/></label>
+                            <label><input name="nature" type="radio" value="9"/></label>
+                        </div>
+                  </td>
+                  <td>Nature</td>
+                </tr>
+                <tr>
+                  <td>more Fun</td>
+                  <td>
+                        <div class="radiogroup" id="learning">
+                            <label><input name="learning" type="radio" value="0" checked/></label>
+                            <label><input name="learning" type="radio" value="1"/></label>
+                            <label><input name="learning" type="radio" value="2"/></label>
+                            <label><input name="learning" type="radio" value="3"/></label>
+                            <label><input name="learning" type="radio" value="4"/></label>
+                            <label><input name="learning" type="radio" value="5"/></label>
+                            <label><input name="learning" type="radio" value="6"/></label>
+                            <label><input name="learning" type="radio" value="7"/></label>
+                            <label><input name="learning" type="radio" value="8"/></label>
+                            <label><input name="learning" type="radio" value="9"/></label>
+                        </div>
+                  </td>
+                  <td>Learning</td>
+                </tr>
+              </table>
         </form>
     </div>
 </body>
