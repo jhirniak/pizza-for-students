@@ -13,6 +13,7 @@ age_groups = ['toddler', 'junior', 'teen', 'student', 'adult', 'senior']
 
 # satisfiers
 bools = ['sport', 'brave', 'travel', 'friendly', 'exploration', 'nature', 'learning']
+rating_categories = bools + ['age_groups']
 
 sport = ['skating', 'golf', 'canoeing', 'dance', 'water sports', 'fitness', 'badminton', 'gymnastics', 'softplay', 'abseiling', 'pitch and putt', 'basketball', 'basket ball', 'cycling', 'coached activities', 'aerobic', 'fencing', 'tennis', 'coaching', 'orienteering', 'hockey', 'croquet', 'powerboat', 'swim', 'cricket', 'gym', 'football', 'hillwalking', 'table tennis', 'dinghy cruising', 'bouldering', 'american football', 'climbing', 'bmx', 'short tennis', 'athletics', 'turkish baths', 'judo', 'sailing', 'racing', 'aquafit', 'kayaking', 'skateboard', 'rugby', 'volleyball', 'aerial assault ', 'squash', 'bowling', 'biking', 'bike']
 
