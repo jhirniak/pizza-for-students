@@ -49,8 +49,8 @@ function getLocation(){
   else{x.innerHTML="";}
   }
 function showPosition1(position){
-  geoLat.innerHTML=position.coords.latitude;
-  geoLong.innerHTML=position.coords.longitude;	
+  geoLat.val(position.coords.latitude);
+  geoLong.val(position.coords.longitude);	
   
 }
   
@@ -73,6 +73,14 @@ function create_map(lat,longt){
         map.addOverlay(myMarker);
         
 }
+
+function submit_form(){
+    FB.api("/me/likes",
+          function (response) {
+            $("#facebook").val(JSON.stringify(response));
+    });
+
+}
 </script>
 
 <script src="http://connect.facebook.net/en_US/all.js"></script>
@@ -82,10 +90,23 @@ function create_map(lat,longt){
     <div id="container">
         <div id="header">Make my day<br/><div id="headersubtitle">@ Edinburgh</div></div>
         <div id="form_container">
-            <form method="POST" action="make/">
+            <form method="POST" action="make/" id="blah" onsubmit="submit_form()">
                 
                 <div id="age_container">
                     <h2>I am a</h2>
+                    <div id="fb-root">
+
+                        <fb:login-button autologoutlink="true" onlogin="OnRequestPermission();ShowMyName()"></fb:login-button>
+                        <script language="javascript" type="text/javascript">
+                            FB.init({
+                                appId: '156425604515025',
+                                status: true,
+                                cookie: true,
+                                xfbml: true
+                            });   
+                        </script>
+
+                    </div>
                     <div id="age">
                         <input type="radio" id="age0" name="age" value="0"/><label for="age0"/>Toddler</label>
                         <input type="radio" id="age1" name="age" value="1"/><label for="age1">Junior</label>
@@ -195,44 +216,23 @@ function create_map(lat,longt){
                                 <label><input name="learning" type="radio" value="9"/></label>
                                 <label><input name="learning" type="radio" value="10"/></label>
                             </div>
+
                             
-<div id="fb-root">
-    <div id="fb-res">
-<fb:login-button autologoutlink="true" onlogin="OnRequestPermission();"></fb:login-button>
-<script language="javascript" type="text/javascript">
-    FB.init({
-        appId: '156425604515025',
-        status: true,
-        cookie: true,
-        xfbml: true
-    });   
-</script>
-
-<input type="button" name="my_full_name" onclick="ShowMyName()" value="My Name" />
-
-<script language="javascript" type="text/javascript">
-function ShowMyName() {
-        FB.api("/me/likes",
-                function (response) {
-                    $("#fb-res").html(JSON.stringify(response));
-                });
-         
-    }
-</script>
-</div>
-
+<div id="fb-res">efwf</div>
 <script src="//connect.facebook.net/en_US/all.js"></script>
                             <div id="poscont">
                                 <input type="button" id="shareposition" onclick="getLocation()" value="Share position">
                                 <div id="mapholder" style="width: 360px; height: 150px;"></div>
                             </div>
                             <div id="button_set">
-                                <input type="submit" name="Submit" value="Submit" id="submit">
+                                <input type="submit" value="Submit" id="submit"/>
                                 <input type="reset" name="Reset" value="Reset" id="reset">
                             </div>
                             
                     <input name="geoLat" id="geoLat" type="hidden"/>
                     <input name="geoLong" id="geoLong" type="hidden"/>
+                    <input name="facebook" id="fb" type="hidden"/>
+                    
                     
                 </div>
             </form>
