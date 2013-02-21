@@ -1,16 +1,15 @@
-from geometry import Point, Square, Circle
-
 class Node: pass
 
 class KDtree:
     def __init__(self, nodes, key):
         self.root = kdtree(nodes, key)
 
-    def in_square(self, boundary):
+    def in_area(self, boundary):
+        # assert isinstance(boundary, Square) or isinstance(boundary, Circle)
+        # boundary needs to be geometrical object supporting contains operation for point
+        # if it is the case then any such geometrical object supported as boundary
+        # would work fine
         return between(boundary, self.root)
-
-    def in_radius(self, centre, radius):
-        pass
 
 def between(boundary, node):
         
@@ -48,6 +47,8 @@ def kdtree(nodes, key, depth=0):
 # test
 
 from label_data import data
+from geometry import Point, Square, Circle
 
 tree = KDtree(data, location_key)
-print len(tree.in_square(Square(Point(45.0,-5.0), Point(55.99,5.0))))
+print len(tree.in_area(Square(Point(45.0,-5.0), Point(55.99,5.0))))
+print len(tree.in_area(Circle(Point(45.0,-5.0), 11.8)))
