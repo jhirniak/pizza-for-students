@@ -31,13 +31,3 @@ div#poscont{
     text-align: center;
 }
 
-.ui-button.ui-widget .ui-button-text{
-    line-height:15px;
-    font-size: 15px;
-}
-
-#radioset1, #radioset2{
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
