@@ -49,7 +49,6 @@ class User:
 # testing
 # all int values from [0..8], total 9
 user_example = { 'age' : student, 'sport' : True, 'brave' : False, 'travel' : 4, 'friendly' : 4, 'exploration' : 4, 'nature' : 4, 'learning' : 4 }
-
 test_users = lambda how_many   : \
              [User( { 'sport'       : random.randint(0,10),
                       'brave'       : random.randint(0,10),
