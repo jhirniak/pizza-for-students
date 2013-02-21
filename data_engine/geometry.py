@@ -29,7 +29,12 @@ class Square:
            and self.ymin <= point.y and point.y <= self.ymax
 
 class Circle:
-    pass
+    def __init__(self, centre, radius):
+        self.centre = centre
+        self.radius = radius
+
+    def contains(self, point):
+        return self.centre.distance(point) <= self.radius
 
 class Area:
     def __init__(self, convex):
