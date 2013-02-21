@@ -8,8 +8,10 @@
   <div id="cm-example" style="width: 900px; height: 700px; float : left"></div>
     <div id="panel" style="width: 200px; height : 500px; float: left; padding-left: 10px"></div>
   <div id="panel2" style="width: 200px; height : 500px; float: left; padding-left: 10px"></div>
+  <div id="weather" style="background-color:#EEEEEE;height:200px;width:450px;float:left;"></div>
   
   <script type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
+  <script type="text/javascript" src="jquery.js"></script>
   <script type="text/javascript">
     var cloudmade = new CM.Tiles.CloudMade.Web({key: 'eb9238c6dc0248efb8cc8d6a285df878'});
     var map = new CM.Map('cm-example', cloudmade);
@@ -23,7 +25,7 @@
     museumList[0] = {name: "National Museum of Scotland", coordinates: [55.946899,-3.190584]};
     
 //Routing
-    var directions = new CM.Directions(map, "panel", 'eb9238c6dc0248efb8cc8d6a285df878')
+    var directions = new CM.Directions(map, "panel", 'eb9238c6dc0248efb8cc8d6a285df878');
     var waypoints = [new CM.LatLng(museumList[0].coordinates[0], museumList[0].coordinates[1]), new CM.LatLng(infList[0].coordinates[0],infList[0].coordinates[1])];
     directions.loadFromWaypoints(waypoints, {
         travelMode : 'foot', 
@@ -31,7 +33,7 @@
         draggableWaypoints : 'True'
     }); 
 
-    var directions2 = new CM.Directions(map, "panel", 'eb9238c6dc0248efb8cc8d6a285df878')
+    var directions2 = new CM.Directions(map, "panel2", 'eb9238c6dc0248efb8cc8d6a285df878')
     var waypoints2 = [new CM.LatLng(infList[1].coordinates[0],infList[1].coordinates[1]), new CM.LatLng(museumList[0].coordinates[0], museumList[0].coordinates[1])];
     directions2.loadFromWaypoints(waypoints2, {
         travelMode : 'foot', 
@@ -73,7 +75,7 @@
         map.addOverlay(myMarker);
     }
     
-
+/*
     for (var i = 0; i < parkList.length; i++) {
         var myMarkerLatLng = new CM.LatLng(parkList[i].coordinates[0], parkList[i].coordinates[1]);
         var myMarker = new CM.Marker(myMarkerLatLng, {
@@ -144,8 +146,33 @@
             icon: sportsIcon
         });
         map.addOverlay(myMarker);
-    }
-
+    }*/
+//Weather
+      var my_city="Edinburgh, UK";
+      var my_key="597e7211f7122344131802";
+      var no_of_days=2;
+      var uri="http://free.worldweatheronline.com/feed/weather.ashx?q="+my_city+"&key="+my_key+"&format=json&no_of_days="+no_of_days+"&includeLocation=yes&callback=?";
+      uri=encodeURI(uri); 
+      jQuery.get(uri,function(r){
+        nearest_area = r.data.nearest_area[0].region[0].value;
+        country = r.data.nearest_area[0].country[0].value;
+        current_temp_F = r.data.current_condition[0].temp_F;
+        current_temp_C = r.data.current_condition[0].temp_C;
+        current_condition = r.data.current_condition[0].weatherDesc[0].value;
+        max_temp_F = r.data.weather[0].tempMaxF;
+        min_temp_F = r.data.weather[0].tempMinF;
+        max_temp_C = r.data.weather[0].tempMaxC;
+        min_temp_C = r.data.weather[0].tempMinC;
+        humidity = r.data.current_condition[0].humidity;
+        precipitation = r.data.current_condition[0].precipMM;
+        pressure = r.data.current_condition[0].pressure;
+        wind_speed_kmph = r.data.current_condition[0].windspeedKmph;
+        wind_speed_mph = r.data.current_condition[0].windspeedMiles;
+        wind_dir = r.data.current_condition[0].winddirDegree;
+        current_img = r.data.current_condition[0].weatherIconUrl.value;
+  
+        document.getElementById('weather').innerHTML = 'img src = current_img';
+      },"json");
   </script>
 
 </body>

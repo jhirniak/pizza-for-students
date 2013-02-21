@@ -1,0 +1,16 @@
+function weatherStats() {
+      var my_city="Edinburgh, UK";
+      var my_key="597e7211f7122344131802";
+      var no_of_days=2;
+      var uri="http://free.worldweatheronline.com/feed/weather.ashx?q="+my_city+"&key="+my_key+"&format=json&no_of_days="+no_of_days+"&includeLocation=yes&jsoncallback=?";
+      uri=encodeURI(uri); 
+      jQuery.get(uri,function(r){
+      if(r.data.error) {
+        alert(r.data.error[0].msg);
+      }
+      else {
+        return(r.data.current_condition[0].temp_C);
+      }
+    },"json");
+}
+
