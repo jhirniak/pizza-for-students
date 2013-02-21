@@ -2,7 +2,7 @@
 <html lang="uk">
 <head>
     <meta charset="utf-8">
-    <title>Make My Day :)</title>
+    <title>{% block title %}{% endblock %}</title>
     <link href="jquery/css/sunny/jquery-ui-1.10.1.custom.css" rel="stylesheet">
     <link href="css/form.css" rel="stylesheet">
     <link href="css/body.css" rel="stylesheet">
@@ -21,7 +21,7 @@
           slide: function(event, ui) {
             radios.filter("[value=" + ui.value + "]").click();
           }
-        }).appendTo(this);
+        },5).appendTo(this);
     });
     }
     function check(){
@@ -77,30 +77,31 @@ function create_map(lat,longt){
 </head>
 <body onload="form()">
     <div id="container">
-        <div id="header">Make my day <span id="headersubtitle">@ Edinburgh</span></div>
+        <div id="header">Make my day<br/><div id="headersubtitle">@ Edinburgh</div></div>
         <div id="form_container">
-            <form method="POST" action="http://127.0.0.1:8000/make/">
+            <form method="POST" action="make/">
+                
                 <div id="age_container">
                     <h2>I am a</h2>
                     <div id="age">
-                        <input type="radio" id="age0" name="age"><label for="age0">Toddler</label>
-                        <input type="radio" id="age1" name="age"><label for="age1">Junior</label>
-                        <input type="radio" id="age2" name="age"><label for="age2">Teenager</label>
-                        <input type="radio" id="age3" name="age"><label for="age3">Student</label>
-                        <input type="radio" id="age4" name="age" checked="checked"><label for="age4">Adult</label>
-                        <input type="radio" id="age5" name="age"><label for="age5">Senior</label>
+                        <input type="radio" id="age0" name="age" value="0" checked="checked"><label for="age0"/>Toddler</label>
+                        <input type="radio" id="age1" name="age" value="1"/><label for="age1">Junior</label>
+                        <input type="radio" id="age2" name="age" value="2"/><label for="age2">Teenager</label>
+                        <input type="radio" id="age3" name="age" value="3"/><label for="age3">Student</label>
+                        <input type="radio" id="age4" name="age" value="4"/><label for="age4">Adult</label>
+                        <input type="radio" id="age5" name="age" value="5"/><label for="age5">Senior</label>
                     </div>
                 </div>
                 
                 <div id="sliders">
                     <h2>Choose what is closest to your preferences:</h2>
                             <div class="radiogroup" id="sport">
-                                <label><input name="sport" type="radio" value="0" checked/></label>
+                                <label><input name="sport" type="radio" value="0" checked="checked"/></label>
                                 <label><input name="sport" type="radio" value="1"/></label>
                                 <label><input name="sport" type="radio" value="2"/></label>
                                 <label><input name="sport" type="radio" value="3"/></label>
                                 <label><input name="sport" type="radio" value="4"/></label>
-                                <label><input name="sport" type="radio" value="5" checked="checked"></label>
+                                <label><input name="sport" type="radio" value="5"></label>
                                 <label><input name="sport" type="radio" value="6"/></label>
                                 <label><input name="sport" type="radio" value="7"/></label>
                                 <label><input name="sport" type="radio" value="8"/></label>
@@ -109,12 +110,12 @@ function create_map(lat,longt){
                             </div>
                             <br/>
                             <div class="radiogroup" id="brave">
-                                <label><input name="brave" type="radio" value="0" checked/></label>
+                                <label><input name="brave" type="radio" value="0" checked="checked"/></label>
                                 <label><input name="brave" type="radio" value="1"/></label>
                                 <label><input name="brave" type="radio" value="2"/></label>
                                 <label><input name="brave" type="radio" value="3"/></label>
                                 <label><input name="brave" type="radio" value="4"/></label>
-                                <label><input name="brave" type="radio" value="5" checked="checked"></label>
+                                <label><input name="brave" type="radio" value="5"></label>
                                 <label><input name="brave" type="radio" value="6"/></label>
                                 <label><input name="brave" type="radio" value="7"/></label>
                                 <label><input name="brave" type="radio" value="8"/></label>
@@ -123,12 +124,12 @@ function create_map(lat,longt){
                             </div>
                             <br/>
                             <div class="radiogroup" id="travel">
-                                <label><input name="travel" type="radio" value="0" checked/></label>
+                                <label><input name="travel" type="radio" value="0" checked="checked"/></label>
                                 <label><input name="travel" type="radio" value="1"/></label>
                                 <label><input name="travel" type="radio" value="2"/></label>
                                 <label><input name="travel" type="radio" value="3"/></label>
                                 <label><input name="travel" type="radio" value="4"/></label>
-                                <label><input name="travel" type="radio" value="5" checked="checked"></label>
+                                <label><input name="travel" type="radio" value="5"></label>
                                 <label><input name="travel" type="radio" value="6"/></label>
                                 <label><input name="travel" type="radio" value="7"/></label>
                                 <label><input name="travel" type="radio" value="8"/></label>
@@ -137,12 +138,12 @@ function create_map(lat,longt){
                             </div>
                             <br/>
                             <div class="radiogroup" id="friendly">
-                                <label><input name="friendly" type="radio" value="0" checked/></label>
+                                <label><input name="friendly" type="radio" value="0" checked="checked"/></label>
                                 <label><input name="friendly" type="radio" value="1"/></label>
                                 <label><input name="friendly" type="radio" value="2"/></label>
                                 <label><input name="friendly" type="radio" value="3"/></label>
                                 <label><input name="friendly" type="radio" value="4"/></label>
-                                <label><input name="friendly" type="radio" value="5" checked="checked"></label>
+                                <label><input name="friendly" type="radio" value="5"></label>
                                 <label><input name="friendly" type="radio" value="6"/></label>
                                 <label><input name="friendly" type="radio" value="7"/></label>
                                 <label><input name="friendly" type="radio" value="8"/></label>
@@ -151,12 +152,12 @@ function create_map(lat,longt){
                             </div>
                             <br/>
                             <div class="radiogroup" id="exploration">
-                                <label><input name="exploration" type="radio" value="0" checked/></label>
+                                <label><input name="exploration" type="radio" value="0" checked="checked"/></label>
                                 <label><input name="exploration" type="radio" value="1"/></label>
                                 <label><input name="exploration" type="radio" value="2"/></label>
                                 <label><input name="exploration" type="radio" value="3"/></label>
                                 <label><input name="exploration" type="radio" value="4"/></label>
-                                <label><input name="exploration" type="radio" value="5" checked="checked"></label>
+                                <label><input name="exploration" type="radio" value="5"></label>
                                 <label><input name="exploration" type="radio" value="6"/></label>
                                 <label><input name="exploration" type="radio" value="7"/></label>
                                 <label><input name="exploration" type="radio" value="8"/></label>
@@ -165,12 +166,12 @@ function create_map(lat,longt){
                             </div>
                             <br/>
                             <div class="radiogroup" id="nature">
-                                <label><input name="nature" type="radio" value="0" checked/></label>
+                                <label><input name="nature" type="radio" value="0" checked="checked"/></label>
                                 <label><input name="nature" type="radio" value="1"/></label>
                                 <label><input name="nature" type="radio" value="2"/></label>
                                 <label><input name="nature" type="radio" value="3"/></label>
                                 <label><input name="nature" type="radio" value="4"/></label>
-                                <label><input name="nature" type="radio" value="5" checked="checked"></label>
+                                <label><input name="nature" type="radio" value="5"/></label>
                                 <label><input name="nature" type="radio" value="6"/></label>
                                 <label><input name="nature" type="radio" value="7"/></label>
                                 <label><input name="nature" type="radio" value="8"/></label>
@@ -179,23 +180,30 @@ function create_map(lat,longt){
                             </div>
                             <br/>
                             <div class="radiogroup" id="learning">
-                                <label><input name="learning" type="radio" value="0" checked/></label>
+                                <label><input name="learning" type="radio" value="0" checked="checked"/></label>
                                 <label><input name="learning" type="radio" value="1"/></label>
                                 <label><input name="learning" type="radio" value="2"/></label>
                                 <label><input name="learning" type="radio" value="3"/></label>
                                 <label><input name="learning" type="radio" value="4"/></label>
-                                <label><input name="learning" type="radio" value="5" checked="checked"></label>
+                                <label><input name="learning" type="radio" value="5"/></label>
                                 <label><input name="learning" type="radio" value="6"/></label>
                                 <label><input name="learning" type="radio" value="7"/></label>
                                 <label><input name="learning" type="radio" value="8"/></label>
                                 <label><input name="learning" type="radio" value="9"/></label>
                                 <label><input name="learning" type="radio" value="10"/></label>
                             </div>
-                            <br/>
+                            
+                            <div id="poscont">
+                                <input type="button" id="shareposition" onclick="getLocation()" value="Share position">
+                                <div id="mapholder" style="width: 360px; height: 150px;"></div>
+                            </div>
                             <div id="button_set">
                                 <input type="submit" name="Submit" value="Submit" id="submit">
                                 <input type="reset" name="Reset" value="Reset" id="reset">
                             </div>
+                            
+                    <input name="geoLat" id="geoLat" type="hidden"/>
+                    <input name="geoLong" id="geoLong" type="hidden"/>
                     
                 </div>
             </form>
