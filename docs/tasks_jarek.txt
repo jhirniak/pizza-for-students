@@ -1,0 +1,11 @@
+Make sure all labels in labels.py
+
+Save data using pickle (save method in data.py)
+
+Think if rating fields for rating have all fields and correspondence is balanced between different options
+
+Shoud I use int or bool is ok for them
+
+Test area selection from kdtree nodes in test.py
+
+Write interface for data in interface.py and query interface in query.py
