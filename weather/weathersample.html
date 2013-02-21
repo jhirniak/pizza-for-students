@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <title>Weather Example</title>
+</head>
+<body>
+  <div id="weather" style="background-color:#FFFFFF;height:200px;width:450px;float:left;"></div>
+  <script language="JavaScript" type="text/javascript" src="jquery.js"></script>
+  <script language="JavaScript" type="text/javascript" src="weather.js"></script>
+  <script type="text/javascript">
+    
+//Weather
+    getWeatherForDay(0, function(j) {
+        document.write('Max temperature for today is: ' +j.max_temp_C+ ' C');
+        document.write('<img src='+j.img+'>');
+        
+        //Write within div container
+        //document.getElementById('weather').innerHTML = '<img src='+j.img+'>'; //
+    });
+
+//End Weather
+</script>
+</body>
+</html>

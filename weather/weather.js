@@ -1,3 +1,6 @@
+
+//First argument is day number 0-4
+//Second argument is function, see example
 function getWeatherForDay(num, callback) {
       var my_city="Edinburgh, UK";
       var my_key="597e7211f7122344131802";
@@ -25,7 +28,6 @@ function getWeatherForDay(num, callback) {
                 img : r.data.current_condition[num]["weatherIconUrl"][0].value});
          }
       }, "json");
-      return x;
 }
 
 

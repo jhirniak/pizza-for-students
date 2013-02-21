@@ -25,7 +25,6 @@ function getWeatherForDay(num, callback) {
                 img : r.data.current_condition[num]["weatherIconUrl"][0].value});
          }
       }, "json");
-      return x;
 }
 
 
