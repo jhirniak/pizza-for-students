@@ -1,15 +1,18 @@
 body{
     background-image:url('../img/EdinburghSunrise.jpg');
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    background-position:center; 
+    font-family:"Times New Roman", Times, serif;
 }
 
 div#container{
-    position:fixed;
-    top: 50%;
-    left: 50%;
-    width:1000px;
-    height:600px;
-    margin-top: -300px; /*set to a negative number 1/2 of your height*/
-    margin-left: -500px; /*set to a negative number 1/2 of your width*/
+    width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    /*margin-top: -300px; /*set to a negative number 1/2 of your height*/
+    /*margin-left: -325px; /*set to a negative number 1/2 of your width*/
     border: 1px solid #ccc;
     border-radius: 15px;
     background-color: #f3f3f3;
@@ -23,7 +26,7 @@ div#header{
     font-size: 60px;    
 }
 
-span#headersubtitle{
+div#headersubtitle{
     font-size: 20px;
 }
 
@@ -33,21 +36,28 @@ div#age_container{
     margin-right: auto;
 }
 div#age{
-    font-size: 16px;
+    ont-size: 16px;
 }
 div#form_container{
-    width: 600px;
+    width: 500px;
     margin-left: auto;
     margin-right: auto;
-    font-size: 15px;
+    font-size: 12px;
 }
 div.radiogroup{
-    font-size: 15px;
     opacity: 1;
 }
 div#sliders{
-    width: 570px;
+    width: 370px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+}
+
+#poscont{
+    margin: 5px;
+}
+
+#button_set{
+    margin-bottom: 10px;
 }
