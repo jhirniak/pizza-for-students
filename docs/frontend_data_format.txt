@@ -1,8 +1,8 @@
 input format:
 	obj = [day, day, ...]
-		day = [route, route, ...]
-		route = [size:int, title:str, [places]]
-		places = [name:str, any-other-stuff]
+	day = [route, route, ...]
+	route = [size:int, title:str, [places]]
+	places = [name:str, any-other-stuff]
 
 	example:
 
