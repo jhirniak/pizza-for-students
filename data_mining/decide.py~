@@ -1,3 +1,0 @@
-# location of files with CSV data
-csvdata = []
-csvdata = [open(d) for d in csvdata]

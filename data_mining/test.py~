@@ -1,2 +1,0 @@
-from user_vector import test_users
-from label_data import data

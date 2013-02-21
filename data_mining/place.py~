@@ -1,4 +1,0 @@
-from location import Location
-
-class Place(Location):
-    
