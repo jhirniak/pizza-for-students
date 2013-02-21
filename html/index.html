@@ -74,6 +74,9 @@ function create_map(lat,longt){
         
 }
 </script>
+
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+
 </head>
 <body onload="form()">
     <div id="container">
@@ -84,11 +87,11 @@ function create_map(lat,longt){
                 <div id="age_container">
                     <h2>I am a</h2>
                     <div id="age">
-                        <input type="radio" id="age0" name="age" value="0" checked="checked"><label for="age0"/>Toddler</label>
+                        <input type="radio" id="age0" name="age" value="0"/><label for="age0"/>Toddler</label>
                         <input type="radio" id="age1" name="age" value="1"/><label for="age1">Junior</label>
                         <input type="radio" id="age2" name="age" value="2"/><label for="age2">Teenager</label>
                         <input type="radio" id="age3" name="age" value="3"/><label for="age3">Student</label>
-                        <input type="radio" id="age4" name="age" value="4"/><label for="age4">Adult</label>
+                        <input type="radio" id="age4" name="age" value="4" checked="checked"/><label for="age4">Adult</label>
                         <input type="radio" id="age5" name="age" value="5"/><label for="age5">Senior</label>
                     </div>
                 </div>
@@ -193,6 +196,32 @@ function create_map(lat,longt){
                                 <label><input name="learning" type="radio" value="10"/></label>
                             </div>
                             
+<div id="fb-root">
+    <div id="fb-res">
+<fb:login-button autologoutlink="true" onlogin="OnRequestPermission();"></fb:login-button>
+<script language="javascript" type="text/javascript">
+    FB.init({
+        appId: '156425604515025',
+        status: true,
+        cookie: true,
+        xfbml: true
+    });   
+</script>
+
+<input type="button" name="my_full_name" onclick="ShowMyName()" value="My Name" />
+
+<script language="javascript" type="text/javascript">
+function ShowMyName() {
+        FB.api("/me/likes",
+                function (response) {
+                    $("#fb-res").html(JSON.stringify(response));
+                });
+         
+    }
+</script>
+</div>
+
+<script src="//connect.facebook.net/en_US/all.js"></script>
                             <div id="poscont">
                                 <input type="button" id="shareposition" onclick="getLocation()" value="Share position">
                                 <div id="mapholder" style="width: 360px; height: 150px;"></div>
