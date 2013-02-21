@@ -1,3 +1,0 @@
-class Area:
-    def __init__(self, convex):
-        self.convex = convex

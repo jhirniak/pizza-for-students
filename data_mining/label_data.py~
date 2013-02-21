@@ -1,9 +1,0 @@
-from location import *
-
-# location of files with CSV data
-csvdata = []
-csvdata = [open(d) for d in csvdata]
-
-l1 = Location('Pub', Point(55.1, -3.1), ['outdoor', 'educational'], ['sledge', 'slide'], 'Great for children')
-l2 = Location('Park', Point(55.1, -3.1))
-print l1.name, l1.latitude(), l1.longitude()
