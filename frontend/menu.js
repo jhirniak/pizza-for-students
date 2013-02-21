@@ -1,6 +1,3 @@
-$.getScript("slider.js");
-$.getScript("table.js");
-$.getScript("sliderContent.js");
 
 var created = false
 
