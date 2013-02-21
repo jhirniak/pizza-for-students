@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="uk">
+<head>
+    <meta charset="utf-8">
+    <title>Make My Day :)</title>
+    <link href="jquery/css/sunny/jquery-ui-1.10.1.custom.css" rel="stylesheet">
+    <link href="css/form.css" rel="stylesheet">
+    <link href="css/body.css" rel="stylesheet">
+    <script src="jquery/js/jquery-1.9.1.js"></script>
+    <script src="jquery/js/jquery-ui-1.10.1.custom.js"></script>
+    <script src="jquery/js/jquery.ui.selectmenu.js"></script>
+        
+    <script type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
+<script>    
+    function form(){
+    $(".radiogroup").each(function() {
+        var radios = $(this).find(":radio").hide();
+        $("<div></div>").slider({
+          min: parseInt(radios.first().val(), 10),
+          max: parseInt(radios.last().val(), 10),
+          slide: function(event, ui) {
+            radios.filter("[value=" + ui.value + "]").click();
+          }
+        }).appendTo(this);
+    });
+    }
+    function check(){
+    alert($(":radio[name=age]:checked").val());
+    }
+    $(function(){
+        $("#radioset1").buttonset();
+        $("#radioset2").buttonset();
+        $("#age").buttonset();
+        $("#shareposition").button();
+        $("#mapholder").hide();
+    });
+</script>
+
+<script>
+var x=document.getElementById("mapholder");
+var geoLat=document.getElementById("geoLat");
+var geoLong=document.getElementById("geoLong");
+
+function getLocation(){
+  if (navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(showPosition);
+  }
+  else{x.innerHTML="";}
+  }
+function showPosition1(position){
+  geoLat.innerHTML=position.coords.latitude;
+  geoLong.innerHTML=position.coords.longitude;	
+  
+}
+  
+function showPosition(position){
+    //var latlon=position.coords.latitude+","+position.coords.longitude;
+    $("#mapholder").show();
+    $("#shareposition").hide();
+    create_map(position.coords.latitude,position.coords.longitude);
+}
+  
+function create_map(lat,longt){
+    var cloudmade = new CM.Tiles.CloudMade.Web({key: 'eb9238c6dc0248efb8cc8d6a285df878'});
+    var map = new CM.Map('mapholder', cloudmade);
+    map.setCenter(new CM.LatLng(lat, longt), 15);
+    
+    var myMarkerLatLng = new CM.LatLng(lat,longt);
+        var myMarker = new CM.Marker(myMarkerLatLng, {
+	    title: "My location"
+        });
+        map.addOverlay(myMarker);
+        
+}
+</script>
+</head>
+<body onload="form()">
+    <div id="container">
+        <div id="header">Make my day <span id="headersubtitle">@ Edinburgh</span></div>
+        <div id="form-container">
+        <form action="" method="post" name="user_info">
+            <table width="600" border="0">
+                <tr>
+                  <td>I am Younger</td>
+                  <td width="250">
+                      <!--<select name="select" id="blah">
+                        <option value="0">Toddler</option>
+                        <option value="1">Junior</option>
+                        <option value="2">Teenage</option>
+                        <option value="3">Student</option>
+                        <option value="4" selected>Adult</option>
+                        <option value="5">Senior</option>
+                      </select>-->
+                        <div id="age">
+                            <input type="radio" id="age0" name="radio"><label for="age0">Toddler</label>
+                            <input type="radio" id="age1" name="radio"><label for="age1">Junior</label>
+                            <input type="radio" id="age2" name="radio"><label for="age2">Teenager</label>
+                            <input type="radio" id="age3" name="radio"><label for="age3">Student</label>
+                            <input type="radio" id="age4" name="radio"><label for="age4">Adult</label>
+                            <input type="radio" id="age5" name="radio"><label for="age5">Senior</label>
+                        </div>
+                  </td>
+                  <td>
+                      Older
+                  </td>
+                </tr>
+                <tr>
+                  <td>active/steady?</td>
+                  <td>
+                    <div id="radioset1">
+                        <input type="radio" id="radio1" name="radio"><label for="radio1">Yes</label>
+                        <input type="radio" id="radio2" name="radio"><label for="radio2">No</label>
+                    </div>
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>action/peaceful?</td>
+                  <td>
+                    <div id="radioset2">
+                        <input type="radio" id="radio3" name="action/peaceful" value="True"><label for="radio3">Yes</label>
+                        <input type="radio" id="radio4" name="action/peaceful" value="False"><label for="radio4">No</label>
+                    </div>
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>I prefer not to Travel</td>
+                  <td>
+                      <div class="radiogroup" id="travels">
+                            <label><input name="travels" type="radio" value="0" checked/></label>
+                            <label><input name="travels" type="radio" value="1"/></label>
+                            <label><input name="travels" type="radio" value="2"/></label>
+                            <label><input name="travels" type="radio" value="3"/></label>
+                            <label><input name="travels" type="radio" value="4"/></label>
+                            <label><input name="travels" type="radio" value="5"/></label>
+                            <label><input name="travels" type="radio" value="6"/></label>
+                            <label><input name="travels" type="radio" value="7"/></label>
+                            <label><input name="travels" type="radio" value="8"/></label>
+                            <label><input name="travels" type="radio" value="9"/></label>
+                        </div>
+                  </td>
+                  <td>to Travel</td>
+                </tr>
+                <tr>
+                  <td>I prefer no Exploration</td>
+                  <td>
+                      <div class="radiogroup" id="exploration">
+                            <label><input name="exploration" type="radio" value="0" checked/></label>
+                            <label><input name="exploration" type="radio" value="1"/></label>
+                            <label><input name="exploration" type="radio" value="2"/></label>
+                            <label><input name="exploration" type="radio" value="3"/></label>
+                            <label><input name="exploration" type="radio" value="4"/></label>
+                            <label><input name="exploration" type="radio" value="5"/></label>
+                            <label><input name="exploration" type="radio" value="6"/></label>
+                            <label><input name="exploration" type="radio" value="7"/></label>
+                            <label><input name="exploration" type="radio" value="8"/></label>
+                            <label><input name="exploration" type="radio" value="9"/></label>
+                        </div>
+                  </td>
+                  <td>Exploration</td>
+                </tr>
+                <tr>
+                  <td>friends???</td>
+                  <td>
+                        <div class="radiogroup" id="friends">
+                            <label><input name="friends" type="radio" value="0" checked/></label>
+                            <label><input name="friends" type="radio" value="1"/></label>
+                            <label><input name="friends" type="radio" value="2"/></label>
+                            <label><input name="friends" type="radio" value="3"/></label>
+                            <label><input name="friends" type="radio" value="4"/></label>
+                            <label><input name="friends" type="radio" value="5"/></label>
+                            <label><input name="friends" type="radio" value="6"/></label>
+                            <label><input name="friends" type="radio" value="7"/></label>
+                            <label><input name="friends" type="radio" value="8"/></label>
+                            <label><input name="friends" type="radio" value="9"/></label>
+                        </div>
+                  </td>
+                  <td>???</td>
+                </tr>
+                <tr>
+                  <td>I prefer City</td>
+                  <td>
+                        <div class="radiogroup" id="nature">
+                            <label><input name="nature" type="radio" value="0" checked/></label>
+                            <label><input name="nature" type="radio" value="1"/></label>
+                            <label><input name="nature" type="radio" value="2"/></label>
+                            <label><input name="nature" type="radio" value="3"/></label>
+                            <label><input name="nature" type="radio" value="4"/></label>
+                            <label><input name="nature" type="radio" value="5"/></label>
+                            <label><input name="nature" type="radio" value="6"/></label>
+                            <label><input name="nature" type="radio" value="7"/></label>
+                            <label><input name="nature" type="radio" value="8"/></label>
+                            <label><input name="nature" type="radio" value="9"/></label>
+                        </div>
+                  </td>
+                  <td>Nature</td>
+                </tr>
+                <tr>
+                  <td>more Fun</td>
+                  <td>
+                        <div class="radiogroup" id="learning">
+                            <label><input name="learning" type="radio" value="0" checked/></label>
+                            <label><input name="learning" type="radio" value="1"/></label>
+                            <label><input name="learning" type="radio" value="2"/></label>
+                            <label><input name="learning" type="radio" value="3"/></label>
+                            <label><input name="learning" type="radio" value="4"/></label>
+                            <label><input name="learning" type="radio" value="5"/></label>
+                            <label><input name="learning" type="radio" value="6"/></label>
+                            <label><input name="learning" type="radio" value="7"/></label>
+                            <label><input name="learning" type="radio" value="8"/></label>
+                            <label><input name="learning" type="radio" value="9"/></label>
+                        </div>
+                  </td>
+                  <td>Learning</td>
+                </tr>
+                <tr>
+                    <td>Share position for better results</td>
+                    <td>
+                        <div id="poscont">
+                        <input type="button" id="shareposition" onclick="getLocation()" value="Share position">
+                        <div id="mapholder" style="width: 270px; height: 280px;"></div>
+                        </div>
+                    </td>
+                    <td></td>
+                </tr>
+              </table>
+        <input name="geoLat" id="geoLat" type="hidden"/>
+        <input name="geoLong" id="geoLong" type="hidden"/>
+        </form>
+    </div>
+    
+    </div>
+</body>
+</html>
