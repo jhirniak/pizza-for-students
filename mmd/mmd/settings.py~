@@ -1,4 +1,4 @@
-# Django settings for asd project.
+# Django settings for mmd project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -12,7 +12,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/home/bilyan/ilw/pizza-for-students/db.sqlite3',                 # Or path to database file if using sqlite3.
+        'NAME': '/home/bilyan/ilw/pizza-for-students/mmd/mmd/db.sqlite3', # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -56,17 +56,18 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = '/home/bilyan/ilw/pizza-for-students/asd/static'
+STATIC_ROOT = ''
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/home/bilyan/ilw/pizza-for-students/asd/static/'
+STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    '/home/bilyan/ilw/pizza-for-students/mmd/mmd',
 )
 
 # List of finder classes that know how to find static files in
@@ -78,7 +79,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '0)!grw@9+6s6fqxs3z-t^*hq&amp;7@-!!0szo&amp;%sc7#=@6h1^)4nv'
+SECRET_KEY = '273iz!c32@5*t8r@i++^j5nf(+pb$w_8k*db63297oaqnj!ahj'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -94,19 +95,19 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'asd.urls'
+ROOT_URLCONF = 'mmd.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'asd.wsgi.application'
+WSGI_APPLICATION = 'mmd.wsgi.application'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    "/home/bilyan/ilw/pizza-for-students/asd/template",
+    '/home/bilyan/ilw/pizza-for-students/mmd/mmd',
 )
 
 INSTALLED_APPS = (
@@ -116,11 +117,10 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_facebook',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+    'django.contrib.admindocs',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -151,26 +151,3 @@ LOGGING = {
         },
     }
 }
-
-#Facebook stufff
-
-FACEBOOK_APP_ID = "156425604515025"
-FACEBOOK_APP_SECRET =  "1a7a7e03f2909e009471624ae1378587"
-
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django_facebook.context_processors.facebook',
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.media',
-    'django.core.context_processors.static',
-    'django.core.context_processors.tz',
-    'django.contrib.messages.context_processors.messages',
-)
-
-AUTHENTICATION_BACKENDS = (
-    'django_facebook.auth_backends.FacebookBackend',
-    'django.contrib.auth.backends.ModelBackend',
-)
-
-AUTH_PROFILE_MODULE = 'django_facebook.FacebookProfile'
