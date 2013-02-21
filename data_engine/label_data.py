@@ -9,7 +9,8 @@ csvdata = ['museums_and_galleries.csv',
            'play_areas.csv',
            'community_centres.csv',
            'outdoor_education_providers.csv',
-           'sport_and_recreational_facilities.csv']
+           'sport_and_recreational_facilities.csv',
+	   'test_locations.csv']
 data_dir = 'datasets/'
 csvdata = [ data_dir + filename for filename in csvdata ]
 #csvdata = [open(d) for d in csvdata]
@@ -40,10 +41,11 @@ def process_data(csvfile, fieldmap, fixed={}, default={}, delimiter=',', quotech
     # Make sure all defined will be there with proper value
     fill(fieldmap, bools, False)
     fill(default, bools, False)
-    fill(default, coordinates, '51.0, -3.0')
+    fill(default, coordinates, '-3.0, 51.0')
     fill(default, texts, '')
     fill(default, sets, [])
     fieldmap.update({ d : None for d in defined if d not in fieldmap.keys()})    
+    #print fieldmap
 
     csvdict = csv.DictReader(open(csvfile), delimiter=delimiter,  quotechar=quotechar)
     data = []
@@ -55,6 +57,7 @@ def process_data(csvfile, fieldmap, fixed={}, default={}, delimiter=',', quotech
             
         for field in diff(fieldmap, fixed):
             if fieldmap[field] != None:
+                #print row, fieldmap[field]
                 cell = row[fieldmap[field]]
             else:
                 cell = default[field]
@@ -145,7 +148,12 @@ fieldmap = bools_to_one('Facilities')
 fieldmap.update({'name' : 'Name', 'features' : 'Facilities', 'age_groups' : 'Facilities', 'location' : 'Location'})
 sport_facilities = process_data(csvdata[6], fieldmap=fieldmap, fixed={'type' : 'Indoor sport', 'sport' : True, 'friendly' : True}, default={})
 
-r = museums + parks + monuments + play_areas + community_centres + outdoor_educators + sport_facilities
+
+#fieldmap = bools_to_one('type')
+#fieldmap = fieldmap.update({'location' : 'location', 'name' : 'name', 'type' : 'type'})
+#test_locations = process_data(csvdata[7], fieldmap=fieldmap, fixed={'friendly' : True}, default={})
+
+r = museums + parks + monuments + play_areas + community_centres + outdoor_educators + sport_facilities #+ test_locations
 
 data = map(dict2loc, r)
 
