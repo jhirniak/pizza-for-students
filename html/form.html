@@ -67,7 +67,7 @@ function showPosition(position){
 function create_map(lat,longt){
     var cloudmade = new CM.Tiles.CloudMade.Web({key: 'eb9238c6dc0248efb8cc8d6a285df878'});
     var map = new CM.Map('mapholder', cloudmade);
-    map.setCenter(new CM.LatLng(55.945, -3.187), 15);
+    map.setCenter(new CM.LatLng(lat, longt), 15);
     
     var myMarkerLatLng = new CM.LatLng(lat,longt);
         var myMarker = new CM.Marker(myMarkerLatLng, {
