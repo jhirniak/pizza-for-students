@@ -31,21 +31,24 @@ var lineFunction = d3.svg.line()
 function showTable(data, startX, startY, startW, tX, tY, tw) {
     if (tableShown)
         hideTable();
+
+    //args to vars
     tableW = tw;
     tableX = tX;
     tableY = tY;
     tableShown = true;
-    //.interpolate('bundle')
-    //.tension(0.9999);
-    //alert(tableX);
+
     drawTableBg();
+
     for (var i = 0; i < data.length; i++) {
         var activity = data[i];
         var pts =  [{ x: startX + activity[2] * startW / contentLen, y: startY },
-                    { x: startX + activity[2] * startW / contentLen, y: startY + (tableY - startY) * 0.2 },
+                    //{ x: startX + activity[2] * startW / contentLen, y: startY + (tableY - startY) * 0.2 },
+                    { x: startX + activity[2] * startW / contentLen, y: startY + barHeight / 10 },
                     { x: tableX + activity[2] * tableW / contentLen, y: tableY },
                     { x: tableX + (activity[2] + activity[1]) * tableW / contentLen, y: tableY },
-                    { x: startX + (activity[2] + activity[1]) * startW / contentLen, y: startY + (tableY - startY) * 0.2 },
+                    //{ x: startX + (activity[2] + activity[1]) * startW / contentLen, y: startY + (tableY - startY) * 0.2 },
+                    { x: startX + (activity[2] + activity[1]) * startW / contentLen, y: startY + barHeight / 10 },
                     { x: startX + (activity[2] + activity[1]) * startW / contentLen, y: startY }];
 
         var tmp = transitionGroup.append('path')
@@ -90,10 +93,10 @@ function hideTable() {
 function drawTableBg(id) {
     var off = (CONTENT_OFFSET * dayLength);
     var pts = [{ x: dayLength * sliderPos, y: barHeight },
-             { x: tableX - off, y: tableY - off },
+             { x: tableX - off, y: tableY },
              { x: tableX - off, y: tableY + tableH + off },
              { x: tableX + tableW + off, y: tableY + tableH + off },
-             { x: tableX + tableW + off, y: tableY - off },
+             { x: tableX + tableW + off, y: tableY },
              { x: dayLength * (sliderPos + 1), y: barHeight }];
 
     tableContainer.append('path')

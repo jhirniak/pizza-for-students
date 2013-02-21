@@ -25,3 +25,8 @@ function mlLoaded() {
         createBar(mlParent, null, mlObjData, mlFirstDate, mlWidth);
     }
 }
+
+function mlTransformData(data) {
+
+
+}
