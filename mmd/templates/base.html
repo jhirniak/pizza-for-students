@@ -1,65 +1,205 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!doctype html>
+<html lang="uk">
 <head>
-<title>{% block title %}{% endblock %}</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="/site_media/jquery/css/sunny/jquery-ui-1.10.1.custom.css" rel="stylesheet">
+    <link href="/site_media/css/form.css" rel="stylesheet">
+    <link href="/site_media/css/body.css" rel="stylesheet">
+    <script src="/site_media/jquery/js/jquery-1.9.1.js"></script>
+    <script src="/site_media/jquery/js/jquery-ui-1.10.1.custom.js"></script>
+    <script src="/site_media/jquery/js/jquery.ui.selectmenu.js"></script>
+    <script type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
+<script>    
+    function form(){
+    $(".radiogroup").each(function() {
+        var radios = $(this).find(":radio").hide();
+        $("<div></div>").slider({
+          min: parseInt(radios.first().val(), 10),
+          max: parseInt(radios.last().val(), 10),
+          slide: function(event, ui) {
+            radios.filter("[value=" + ui.value + "]").click();
+          }
+        }).appendTo(this);
+    });
+    }
+    function check(){
+    alert($(":radio[name=age]:checked").val());
+    }
+    $(function(){
+        $("#age").buttonset();
+        $("#submit").button();
+        $("#reset").button();
+        
+        $("#shareposition").button();
+        $("#mapholder").hide();
+    });
+</script>
+
+<script>
+var x=document.getElementById("mapholder");
+var geoLat=document.getElementById("geoLat");
+var geoLong=document.getElementById("geoLong");
+
+function getLocation(){
+  if (navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(showPosition);
+  }
+  else{x.innerHTML="";}
+  }
+function showPosition1(position){
+  geoLat.innerHTML=position.coords.latitude;
+  geoLong.innerHTML=position.coords.longitude;	
+  
+}
+  
+function showPosition(position){
+    //var latlon=position.coords.latitude+","+position.coords.longitude;
+    $("#mapholder").show();
+    $("#shareposition").hide();
+    create_map(position.coords.latitude,position.coords.longitude);
+}
+  
+function create_map(lat,longt){
+    var cloudmade = new CM.Tiles.CloudMade.Web({key: 'eb9238c6dc0248efb8cc8d6a285df878'});
+    var map = new CM.Map('mapholder', cloudmade);
+    map.setCenter(new CM.LatLng(lat, longt), 15);
+    
+    var myMarkerLatLng = new CM.LatLng(lat,longt);
+        var myMarker = new CM.Marker(myMarkerLatLng, {
+	    title: "My location"
+        });
+        map.addOverlay(myMarker);
+        
+}
+</script>
 </head>
-
-<body>
-
-<form name="form1" method="post" action="make/">
-{% csrf_token %}
-<div>
-    <input name="text" type="text" id="wtf">
-</div>
-
-<div>
-    <label><input type="radio" name="radiogr" value="1">1</label>
-    <label><input type="radio" name="radiogr" value="2">2</label> </div>
-<div>
-
- <select name="age">
-      <option value="toddler">toddler</option>
-      <option value="junior">junior</option>
-      <option value="teenager">teenager</option>
-      <option value="student">student</option>
-      <option value="adult">adult</option>
-      <option value="senior">senior</option>
-    </select>
-</div>
-<div>
-Move the sliders to reflect how much inclined are you to do one activity instead of another :
-</div>
-<div>
-<input type="radio" name="sport" value="1">
-<input type="radio" name="sport" value="2">
-<input type="radio" name="sport" value="3">
-<input type="radio" name="sport" value="4">
-<input type="radio" name="sport" value="5">
-<input type="radio" name="sport" value="6">
-<input type="radio" name="sport" value="7">
-<input type="radio" name="sport" value="8">
-<input type="radio" name="sport" value="9">I'd rather do sport
-</div>
-
-<div>
-<input type="radio" name="brave" value="1">
-<input type="radio" name="brave" value="2">
-<input type="radio" name="brave" value="3">
-<input type="radio" name="brave" value="4">
-<input type="radio" name="brave" value="5">
-<input type="radio" name="brave" value="6">
-<input type="radio" name="brave" value="7">
-<input type="radio" name="brave" value="8">
-<input type="radio" name="brave" value="9">
-</div>
-
-
-<div>
-    <input type="submit" name="Submit" value="Submit">
-</div>
-
-</form>
+<body onload="form()">
+    <div id="container">
+        <div id="header">Make my day <span id="headersubtitle">@ Edinburgh</span></div>
+        <div id="form_container">
+            <form method="POST" action="make/">
+		{% csrf_token %}
+                <div id="age_container">
+                    <h2>I am a</h2>
+                     <div id="age">
+                        <input type="radio" id="age0" name="age" value="0"><label for="age0">Toddler</label>
+                        <input type="radio" id="age1" name="age" value="1"><label for="age1">Junior</label>
+                        <input type="radio" id="age2" name="age" value="2"><label for="age2">Teenager</label>
+                        <input type="radio" id="age3" name="age" value="3"><label for="age3">Student</label>
+                        <input type="radio" id="age4" name="age" value="4" checked="checked"><label for="age4">Adult</label>
+                        <input type="radio" id="age5" name="age" value="5"><label for="age5">Senior</label>
+                    </div>
+                </div>
+                
+                <div id="sliders">
+                    <h2>Choose what is closest to your preferences:</h2>
+                            <div class="radiogroup" id="sport">
+                                <label><input name="sport" type="radio" value="0" checked/></label>
+                                <label><input name="sport" type="radio" value="1"/></label>
+                                <label><input name="sport" type="radio" value="2"/></label>
+                                <label><input name="sport" type="radio" value="3"/></label>
+                                <label><input name="sport" type="radio" value="4"/></label>
+                                <label><input name="sport" type="radio" value="5" checked="checked"></label>
+                                <label><input name="sport" type="radio" value="6"/></label>
+                                <label><input name="sport" type="radio" value="7"/></label>
+                                <label><input name="sport" type="radio" value="8"/></label>
+                                <label><input name="sport" type="radio" value="9"/></label>
+                                <label><input name="sport" type="radio" value="10"/></label>
+                            </div>
+                            <br/>
+                            <div class="radiogroup" id="brave">
+                                <label><input name="brave" type="radio" value="0" checked/></label>
+                                <label><input name="brave" type="radio" value="1"/></label>
+                                <label><input name="brave" type="radio" value="2"/></label>
+                                <label><input name="brave" type="radio" value="3"/></label>
+                                <label><input name="brave" type="radio" value="4"/></label>
+                                <label><input name="brave" type="radio" value="5" checked="checked"></label>
+                                <label><input name="brave" type="radio" value="6"/></label>
+                                <label><input name="brave" type="radio" value="7"/></label>
+                                <label><input name="brave" type="radio" value="8"/></label>
+                                <label><input name="brave" type="radio" value="9"/></label>
+                                <label><input name="brave" type="radio" value="10"/></label>
+                            </div>
+                            <br/>
+                            <div class="radiogroup" id="travel">
+                                <label><input name="travel" type="radio" value="0" checked/></label>
+                                <label><input name="travel" type="radio" value="1"/></label>
+                                <label><input name="travel" type="radio" value="2"/></label>
+                                <label><input name="travel" type="radio" value="3"/></label>
+                                <label><input name="travel" type="radio" value="4"/></label>
+                                <label><input name="travel" type="radio" value="5" checked="checked"></label>
+                                <label><input name="travel" type="radio" value="6"/></label>
+                                <label><input name="travel" type="radio" value="7"/></label>
+                                <label><input name="travel" type="radio" value="8"/></label>
+                                <label><input name="travel" type="radio" value="9"/></label>
+                                <label><input name="travel" type="radio" value="10"/></label>
+                            </div>
+                            <br/>
+                            <div class="radiogroup" id="friendly">
+                                <label><input name="friendly" type="radio" value="0" checked/></label>
+                                <label><input name="friendly" type="radio" value="1"/></label>
+                                <label><input name="friendly" type="radio" value="2"/></label>
+                                <label><input name="friendly" type="radio" value="3"/></label>
+                                <label><input name="friendly" type="radio" value="4"/></label>
+                                <label><input name="friendly" type="radio" value="5" checked="checked"></label>
+                                <label><input name="friendly" type="radio" value="6"/></label>
+                                <label><input name="friendly" type="radio" value="7"/></label>
+                                <label><input name="friendly" type="radio" value="8"/></label>
+                                <label><input name="friendly" type="radio" value="9"/></label>
+                                <label><input name="friendly" type="radio" value="10"/></label>
+                            </div>
+                            <br/>
+                            <div class="radiogroup" id="exploration">
+                                <label><input name="exploration" type="radio" value="0" checked/></label>
+                                <label><input name="exploration" type="radio" value="1"/></label>
+                                <label><input name="exploration" type="radio" value="2"/></label>
+                                <label><input name="exploration" type="radio" value="3"/></label>
+                                <label><input name="exploration" type="radio" value="4"/></label>
+                                <label><input name="exploration" type="radio" value="5" checked="checked"></label>
+                                <label><input name="exploration" type="radio" value="6"/></label>
+                                <label><input name="exploration" type="radio" value="7"/></label>
+                                <label><input name="exploration" type="radio" value="8"/></label>
+                                <label><input name="exploration" type="radio" value="9"/></label>
+                                <label><input name="exploration" type="radio" value="10"/></label>
+                            </div>
+                            <br/>
+                            <div class="radiogroup" id="nature">
+                                <label><input name="nature" type="radio" value="0" checked/></label>
+                                <label><input name="nature" type="radio" value="1"/></label>
+                                <label><input name="nature" type="radio" value="2"/></label>
+                                <label><input name="nature" type="radio" value="3"/></label>
+                                <label><input name="nature" type="radio" value="4"/></label>
+                                <label><input name="nature" type="radio" value="5" checked="checked"></label>
+                                <label><input name="nature" type="radio" value="6"/></label>
+                                <label><input name="nature" type="radio" value="7"/></label>
+                                <label><input name="nature" type="radio" value="8"/></label>
+                                <label><input name="nature" type="radio" value="9"/></label>
+                                <label><input name="nature" type="radio" value="10"/></label>
+                            </div>
+                            <br/>
+                            <div class="radiogroup" id="learning">
+                                <label><input name="learning" type="radio" value="0" checked/></label>
+                                <label><input name="learning" type="radio" value="1"/></label>
+                                <label><input name="learning" type="radio" value="2"/></label>
+                                <label><input name="learning" type="radio" value="3"/></label>
+                                <label><input name="learning" type="radio" value="4"/></label>
+                                <label><input name="learning" type="radio" value="5" checked="checked"></label>
+                                <label><input name="learning" type="radio" value="6"/></label>
+                                <label><input name="learning" type="radio" value="7"/></label>
+                                <label><input name="learning" type="radio" value="8"/></label>
+                                <label><input name="learning" type="radio" value="9"/></label>
+                                <label><input name="learning" type="radio" value="10"/></label>
+                            </div>
+                            <br/>
+                            <div id="button_set">
+                                <input type="submit" name="Submit" value="Submit" id="submit">
+                                <input type="reset" name="Reset" value="Reset" id="reset">
+                            </div>
+                    
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
