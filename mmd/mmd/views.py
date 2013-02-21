@@ -6,6 +6,8 @@ from django.http import HttpResponseRedirect
 from django import forms
 import data_engine.user
 from data_engine.label_data import data
+import random
+
 # empty file for importing
 import json
 
@@ -30,16 +32,19 @@ def make(request):
     #facebook_likes = json.loads(facebook)
     # facebook_likes is a dictionary
     print "debug2"
-    dict_of_features = {"age": age ,"sport": sport, "brave": brave,"travel": travel,"friendly": friendly,"exploration": exploration,"nature": nature,"learning": learning }
+    dict_of_features = {"age": int(age) ,"sport": int(sport), "brave": int(brave),"travel": int(travel),"friendly": int(friendly),"exploration": int(exploration),"nature": int(nature),"learning": int(learning) }
 
     for x,k in dict_of_features.iteritems():
-        print x + ' ' + k
+        print x + ' ' + str(k) + ' of type ' + str(type(k))
+    print type(dict_of_features)
     # insert other stuff
-    print facebook_likes
+    # print facebook_likes
     print "Jaroslaw's magic : "
     u = data_engine.user.User(dict_of_features) # this is the User object composed of the form filled out
-    u.println
+    print u.profile
+    print "magic ? "
     x = [ (u.evaluate_location(d), d.name) for d in data ]
-
-
+    t = random.random() < 0.5
+    x = sorted(x, key=lambda (x,y): x)[::-1][0 if t else 1:3 if t else 4]
+    print x
     return HttpResponseRedirect('../') # redirects
