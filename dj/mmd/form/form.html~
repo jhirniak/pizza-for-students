@@ -1,0 +1,4 @@
+<form name="input" action="submit" method="post">
+
+<input type="submit" value="Submit">
+</form>

@@ -36,6 +36,12 @@ class Circle:
     def contains(self, point):
         return self.centre.distance(point) <= self.radius
 
+class Infinity:
+    def __init__(self):
+        pass
+    def contains(self, point):
+        return True
+
 class Area:
     def __init__(self, convex):
         self.convex = convex

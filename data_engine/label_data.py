@@ -83,7 +83,7 @@ def process_data(csvfile, fieldmap, fixed={}, default={}, delimiter=',', quotech
             else:
                 value = cell
             obj.update({ field : value })
-	print obj
+	#print obj
         data.append(obj)
     return data
             
