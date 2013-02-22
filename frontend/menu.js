@@ -18,6 +18,7 @@ var BAR_DATES_SELECTED = '#fff',
     BAR_DATES_HOVER = '#888',
     BAR_HORIZONTAL_OFFSET = 0.0;   //percent
 
+var TRANSITION_TIME = 450;
 
 
 
@@ -30,23 +31,10 @@ var menuWeatherList;
 
 var sliderContentPanel;
 
-function createBar(parent, wList, object, firstDate, width) {
-
-    //setInterval(function () {
-
-        //TEST ONLY
-        object = [
-                  [['cafe', 2], ['jogging', 3]],
-                  [['cafe2', 3], ['jogging2', 5], ['cinema2', 3]],
-                  [['cafe3', 1], ['jogging3', 2], ['cinema3', 2]],
-                  [['cafe3', 1], ['jogging3', 2], ['cinema3', 2]],
-                  [['cafe3', 1], ['jogging3', 2], ['cinema3', 2]],
-                  [['cafe3', 1], ['jogging3', 2], ['cinema3', 2]],
-                  [['cafe3', 1], ['jogging3', 2], ['cinema3', 2]]
-        ]
-
-        wList = [0.5, 0.6, 0.7, 0.4, 0.2, 0.6]
-
+function createBar(parent, object, firstDate, width) {
+    wList = object.map(function (d, i) {
+        return d.weather;
+    });
         if (created) {
             alert("createBar called twice");
             return;
@@ -75,14 +63,18 @@ function createBar(parent, wList, object, firstDate, width) {
         setupTooltip();
 
 
+        TRANSITION_TIME = 0;
         moveSlider(0);
         redrawTextLines();
+        TRANSITION_TIME = 450;
 
 
     //}, 200);
 }
 
 var barDiv;
+
+var mapDiv;
 
 function setupSvg() {
     barDiv = d3.select(barParent).append('div')
@@ -92,6 +84,13 @@ function setupSvg() {
         .attr('id', 'barSvg')
         .attr('width', barWidth)
         .attr('height', SVG_HEIGHT);
+
+    mapDiv = svg.append('div')
+        .attr('id', 'map')
+        .style('position', 'absolute')
+        .style('z-index', '500')
+        .style({ x: 0.6 * barWidth + 12, y: barHeight + 20, width: 0.4 * barWidth - 12 + 'px', height: 500 + 'px' })
+        .style('background-color', 'purple');
 }
 
 function setupBar() {
@@ -151,20 +150,20 @@ function setupTextLines() {
     for (var i = 0; i < dayCount; i++) {
         barTexts[i] = tlGroup.append('text')
             .text(getDayString(dayFirst, i))
-                .attr('text-anchor', 'middle')
+                .attr('text-anchor', 'left')
                 .attr('pointer-events', 'none')
                 .style('font-weight', 'bold')
-                .attr({ x: dayLength * i + dayLength / 2, y: barHeight / 3, fill: (i == sliderPos ? BAR_DATES_SELECTED : BAR_DATES_UNSELECTED) });
+                .attr({ x: dayLength * i + dayLength * 0.6, y: barHeight / 3, fill: (i == sliderPos ? BAR_DATES_SELECTED : BAR_DATES_UNSELECTED) });
         if (i > 0)
-            tlGroup.append('line')
+            svg.append('line')
                 .attr("x1", dayLength * i)
                 .attr("y1", barHeight / 10)
                 .attr("x2", dayLength * i)
                 .attr("y2", barHeight * 9 / 10)
                 .attr('pointer-events', 'none')
-                .style("fill", 'white')
-                .style("fill-width", 3)
-                .style('fill-opacity', 0.8);
+                .style("stroke", 'white')
+                .style("stroke-width", 3)
+                .style('stroke-opacity', 0.9);
     }
 }
 
@@ -179,12 +178,11 @@ var tipOffsetX = 12,
     tipOffsetY = 20;
 function showTooltip(text, p) {
     if (p == null) {
-        //alert('null!');
         p = { x: d3.event.pageX + tipOffsetX, y: d3.event.pageY + tipOffsetY };
     }
     barTooltip
         .transition().duration(200)
-        .style("opacity", 1)
+        .style("opacity", 0.9)
         .text(text);
 }
 
@@ -198,6 +196,18 @@ function hideTooltip() {
     barTooltip
         .transition().duration(200)
         .style("opacity", 1e-6);
+}
+
+function addTooltip(o, f) {
+    o.on('mousemove', function () {
+            moveTooltip();
+        })
+        .on('mouseenter', function (d) {
+            showTooltip(f(o));
+        })
+        .on('mouseout', function (d) {
+            hideTooltip();
+        })
 }
 
 

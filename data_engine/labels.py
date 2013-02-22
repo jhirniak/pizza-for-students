@@ -1,7 +1,7 @@
 # coding=utf-8
 # sets
 
-types = ['park', 'muesum', 'art gallery', 'community centre', 'historical', 'sport', 'food', 'hangout']
+types = ['Museum', 'Park', 'History', 'Play area', 'Community centre', 'Outdoor sport', 'Indoor sport']
 
 activities = ['5-a-side football', 'inline skating', 'skating', 'golf', 'canoeing', 'dance', 'water sports', 'fitness', 'badminton', 'gymnastics', 'softplay', 'certificated courses', 'abseiling', 'pitch and putt', 'basketball', 'cycling', 'coached activities', 'aerobic', 'fencing', 'tennis', 'coaching', 'orienteering', 'hockey', 'croquet', 'powerboat', 'swimming', 'swim', 'cricket', 'gym', 'football', 'hillwalking', 'table tennis', 'dinghy cruising', 'bouldering', 'american football', 'climbing', 'bmx', 'short tennis', 'athletics', 'turkish baths', 'equipment hire', 'judo', 'sailing', 'racing', 'aquafit', 'kayaking', 'skateboard', 'rugby', 'volleyball', 'aerial assault ', 'older adult activities', 'squash', 'bowling', 'school holiday activities', 'biking', 'massage', 'equipment hire', 'river kayaking', 'sea kayaking', 'certificated courses', 'ball games', 'rugby', 'outdoor gym', 'roller hockey', 'cricket', 'hockey']
 
