@@ -119,7 +119,7 @@ from geometry import Point
 
 print "\n\n\n\n\n\n\n\n\n\n"
 for u in test_users(1):
-    print bad_weather(u, Point(51.0, -3.0), 100.0)
+    print good_weather(u, Point(51.0, -3.0), 100.0)
 #    print get_10_to_map(u, Point(51.0, -3.0), 7.5)
     #x= any_2_dict(get_top_10(u))[2]
     #print x['feature']

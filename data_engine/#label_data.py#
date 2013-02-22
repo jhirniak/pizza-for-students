@@ -121,7 +121,7 @@ monuments = process_data(csvdata[2], fieldmap=fieldmap, fixed={'type' : 'History
 # Play areas
 fieldmap = bools_to_one('Play facilities')
 fieldmap.update({'name' : 'Site', 'features' : 'Play facilities', 'activities': 'Play facilities', 'location' : 'Location map', 'age_groups' : 'Play facilities', 'address': 'Address', 'postcode': 'Postcode', 'telephone': 'Telephone'})
-play_areas = process_data(csvdata[3], fieldmap=fieldmap, fixed={'type' : 'Play Area', 'sport' : True, 'friendly' : True, 'nature' : 'True', 'outdoor' : True}, default={})
+play_areas = process_data(csvdata[3], fieldmap=fieldmap, fixed={'type' : 'Play area', 'sport' : True, 'friendly' : True, 'nature' : 'True', 'outdoor' : True}, default={})
 
 # Community centres
 fieldmap = bools_to_one('Facilities')
