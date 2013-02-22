@@ -66,6 +66,8 @@ def process_data(csvfile, fieldmap, fixed={}, default={}, delimiter=',', quotech
             if field in sets:
                 exec ('accepted = ' + field) in globals(), locals()
                 value = []
+		if isinstance(cell, str):
+                    cell = cell.lower()
                 for a in accepted:
                     if a in cell:
                         value.append(a)
@@ -84,7 +86,7 @@ def process_data(csvfile, fieldmap, fixed={}, default={}, delimiter=',', quotech
             else:
                 value = cell
             obj.update({ field : value })
-	print obj
+	#print obj
         data.append(obj)
     return data
             
@@ -143,8 +145,13 @@ outdoor_educators = process_data(csvdata[5], fieldmap=fieldmap, fixed={'type' : 
 
 # Sports and recreationial facilities
 fieldmap = bools_to_one('Facilities')
-fieldmap.update({'name' : 'Name', 'features' : 'Facilities', 'age_groups' : 'Facilities', 'location' : 'Location'})
+fieldmap.update({'name' : 'Name', 'features' : 'Facilities', 'age_groups' : 'Facilities', 'location' : 'Location', 
+		 'activities' : 'Activities', 'address' : 'Address', 'postcode' : 'Postcode', 'telephone': 'Telephone',
+		 'email' : 'Email', 'open': 'Opening hours', 'timetable' : 'Timetables', 'cost' : 'Prices',
+		 'url' : 'More information'})
 sport_facilities = process_data(csvdata[6], fieldmap=fieldmap, fixed={'type' : 'Indoor sport', 'sport' : True, 'friendly' : True, 'outdoor' : False}, default={})
+
+print sport_facilities
 
 
 #fieldmap = bools_to_one('type')
@@ -160,10 +167,13 @@ for x in r:
     p = x['age_groups']
     n = x['name']
     o = x['outdoor']
-    if len(p) > 0:
-	   print n, o
+    a = x['activities']
+    f = x['features']
+    """
+    if len(a) > 0:
+	   print n, f, a
 	   print "---"
-
+    """
 
 """
 counter = 0

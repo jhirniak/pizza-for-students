@@ -1,10 +1,11 @@
+# coding=utf-8
 # sets
 
 types = ['park', 'muesum', 'art gallery', 'community centre', 'historical', 'sport', 'food', 'hangout']
 
-activities = ['skating', 'golf', 'canoeing', 'dance', 'water sports', 'fitness', 'badminton', 'gymnastics', 'softplay', 'certificated courses', 'abseiling', 'pitch and putt', 'basketball', 'cycling', 'coached activities', 'aerobic', 'fencing', 'tennis', 'coaching', 'orienteering', 'hockey', 'croquet', 'powerboat', 'swim', 'cricket', 'gym', 'football', 'hillwalking', 'table tennis', 'dinghy cruising', 'bouldering', 'american football', 'climbing', 'bmx', 'short tennis', 'athletics', 'turkish baths', 'equipment hire', 'judo', 'sailing', 'racing', 'aquafit', 'kayaking', 'skateboard', 'rugby', 'volleyball', 'aerial assault ', 'older adult activities', 'squash', 'bowling', 'school holiday activities', 'biking', 'massage']
+activities = ['5-a-side football', 'inline skating', 'skating', 'golf', 'canoeing', 'dance', 'water sports', 'fitness', 'badminton', 'gymnastics', 'softplay', 'certificated courses', 'abseiling', 'pitch and putt', 'basketball', 'cycling', 'coached activities', 'aerobic', 'fencing', 'tennis', 'coaching', 'orienteering', 'hockey', 'croquet', 'powerboat', 'swimming', 'swim', 'cricket', 'gym', 'football', 'hillwalking', 'table tennis', 'dinghy cruising', 'bouldering', 'american football', 'climbing', 'bmx', 'short tennis', 'athletics', 'turkish baths', 'equipment hire', 'judo', 'sailing', 'racing', 'aquafit', 'kayaking', 'skateboard', 'rugby', 'volleyball', 'aerial assault ', 'older adult activities', 'squash', 'bowling', 'school holiday activities', 'biking', 'massage', 'equipment hire', 'river kayaking', 'sea kayaking', 'certificated courses']
 
-features = ['dance studio', 'bmx area', 'cafe', 'balancing beam', 'basketball', 'ball court', 'swimming pool', 'tennis', 'ball end', 'bike track', 'ballcourt', 'bubble pool', 'graffiti wall', 'play area', 'gym', 'football', 'table tennis', 'climbing frame', 'fenced court', 'roundabout', 'bmx', 'skateboard', 'pump track', 'basket ball', 'slide', 'table tennis table', 'swing', 'seating area']
+features = ['dance studio', 'bmx area', 'cafe', 'balancing beam', 'basketball', 'ball court', 'swimming pool', 'tennis', 'ball end', 'bike track', 'ballcourt', 'bubble pool', 'graffiti wall', 'play area', 'gym', 'football', 'table tennis', 'climbing frame', 'fenced court', 'roundabout', 'bmx', 'skateboard', 'pump track', 'basket ball', 'slide', 'table tennis table', 'swing', 'seating area', 'playing fields', 'sauna', 'cycle route', 'cycle path', 'bowling green', 'café', 'athletics track', 'changing facilities', 'free car parking', 'diving pool', 'soft play', 'creche', 'aerotone', 'turkish bath', 'fitness studio', 'hot bath', 'meeting room', 'multi-purpose room', 'bowling rink', 'softplay', 'squash court', 'velodrome', 'sport hall', 'squash court', 'hockey pitch', 'fitness studio', 'meeting facilities', 'athletics', 'rpm studio', 'sauna', '3G pitch', 'activity room', 'sports hall', 'tennis court', 'astroturf pitch', 'american football pitch', 'football pitch', 'rugby pitch', 'playing fields', 'bike trail', 'outdoor gym', 'steamroom', 'climbing area', 'spa', 'store', 'equipment hire', 'bubble pool']
 
 # age groups
 age_groups = ['toddler', 'junior', 'teen', 'student', 'adult', 'senior']
@@ -25,5 +26,5 @@ exploration = ['castle', 'statue', 'memorial', 'gate', 'stone', 'fountain', 'clo
 
 nature = ['park', 'garden', 'hill', 'lake', 'district', 'meadows']
 
-learning = ['museum', 'art gallery', 'castle', 'statue', 'memorial', 'community centre', 'monument', 'war']
+learning = ['museum', 'art gallery', 'castle', 'statue', 'memorial', 'community centre', 'monument', 'war', 'certificated courses', 'lesson', 'class', 'course']
 
