@@ -79,8 +79,8 @@ function create_map(lat,longt){
 function submit_form(){
 
  FB.api("me/likes",
-          function (response) {
-            $("#fbook").val(JSON.stringify(response));
+ function (response) {
+ $("#fbook").val(JSON.stringify(response));
             
     });
 
@@ -98,14 +98,31 @@ function submit_form(){
                 {% csrf_token %}
                 <div id="age_container">
                     <div id="fb-root"></div>
-                    <script>(function(d, s, id) {
-                      var js, fjs = d.getElementsByTagName(s)[0];
-                      if (d.getElementById(id)) return;
-                      js = d.createElement(s); js.id = id;
-                      js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=156425604515025";
-                      fjs.parentNode.insertBefore(js, fjs);
-                      submit_form();
-                    }(document, 'script', 'facebook-jssdk'));</script>
+<script>
+  // Additional JS functions here
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '156425604515025', // App ID
+      channelUrl : '//http://127.0.0.1:8000/', // Channel File
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      xfbml      : true  // parse XFBML
+    });
+
+    form_submit();
+    // Additional init code here
+
+  };
+
+  // Load the SDK Asynchronously
+  (function(d){
+     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     ref.parentNode.insertBefore(js, ref);
+   }(document));
+</script>
                     <div class="fb-login-button" data-show-faces="true" data-width="100" data-max-rows="1" style="margin-left: 00px; margin-right: auto; margin-top: -20px;"></div>
                     <!--<div id="fb-root">
 
