@@ -50,7 +50,7 @@ function showPosition1(position){
     alert(position.coords.latitude);
   $("#geoLat").val(position.coords.latitude);
   $("#geoLong").val(position.coords.longitude);	
-  
+  submit_form();
 }
   
 function showPosition(position){
@@ -76,10 +76,11 @@ function create_map(lat,longt){
 }
 
 function submit_form(){
-    $("#blah").submit();
+
  FB.api("me/likes",
           function (response) {
             $("#fbook").val(JSON.stringify(response));
+            
     });
 
 }
@@ -92,7 +93,7 @@ function submit_form(){
     <div id="container">
         <div id="header">Make my day<br/><div id="headersubtitle">@ Edinburgh</div></div>
         <div id="form_container">
-            <form method="POST" action="make/" id="blah" onsubmit="">
+            <form method="POST" action="make/" id="blah">
                 {% csrf_token %}
                 <div id="age_container">
                     <div id="fb-root">
