@@ -66,6 +66,8 @@ def process_data(csvfile, fieldmap, fixed={}, default={}, delimiter=',', quotech
             if field in sets:
                 exec ('accepted = ' + field) in globals(), locals()
                 value = []
+		if isinstance(cell, str):
+                    cell = cell.lower()
                 for a in accepted:
                     if a in cell:
                         value.append(a)
@@ -84,7 +86,7 @@ def process_data(csvfile, fieldmap, fixed={}, default={}, delimiter=',', quotech
             else:
                 value = cell
             obj.update({ field : value })
-	print obj
+	#print obj
         data.append(obj)
     return data
             
@@ -128,7 +130,7 @@ monuments = process_data(csvdata[2], fieldmap=fieldmap, fixed={'type' : 'History
 
 # Play areas
 fieldmap = bools_to_one('Play facilities')
-fieldmap.update({'name' : 'Site', 'features' : 'Play facilities', 'location' : 'Location map', 'age_groups' : 'Play facilities'})
+fieldmap.update({'name' : 'Site', 'features' : 'Play facilities', 'activities': 'Play facilities', 'location' : 'Location map', 'age_groups' : 'Play facilities', 'address': 'Address', 'postcode': 'Postcode', 'telephone': 'Telephone'})
 play_areas = process_data(csvdata[3], fieldmap=fieldmap, fixed={'type' : 'Play Area', 'sport' : True, 'friendly' : True, 'nature' : 'True', 'outdoor' : True}, default={})
 
 # Community centres
@@ -143,15 +145,18 @@ outdoor_educators = process_data(csvdata[5], fieldmap=fieldmap, fixed={'type' : 
 
 # Sports and recreationial facilities
 fieldmap = bools_to_one('Facilities')
-fieldmap.update({'name' : 'Name', 'features' : 'Facilities', 'age_groups' : 'Facilities', 'location' : 'Location'})
+fieldmap.update({'name' : 'Name', 'features' : 'Facilities', 'age_groups' : 'Facilities', 'location' : 'Location', 
+		 'activities' : 'Activities', 'address' : 'Address', 'postcode' : 'Postcode', 'telephone': 'Telephone',
+		 'email' : 'Email', 'open': 'Opening hours', 'timetable' : 'Timetables', 'cost' : 'Prices',
+		 'url' : 'More information'})
 sport_facilities = process_data(csvdata[6], fieldmap=fieldmap, fixed={'type' : 'Indoor sport', 'sport' : True, 'friendly' : True, 'outdoor' : False}, default={})
-
 
 #fieldmap = bools_to_one('type')
 #fieldmap = fieldmap.update({'location' : 'location', 'name' : 'name', 'type' : 'type'})
 #test_locations = process_data(csvdata[7], fieldmap=fieldmap, fixed={'friendly' : True}, default={})
 
 r = museums + parks + monuments + play_areas + community_centres + outdoor_educators + sport_facilities #+ test_locations
+print play_areas
 
 data = map(dict2loc, r)
 
@@ -160,10 +165,13 @@ for x in r:
     p = x['age_groups']
     n = x['name']
     o = x['outdoor']
-    if len(p) > 0:
-	   print n, o
+    a = x['activities']
+    f = x['features']
+    """
+    if len(a) > 0:
+	   print n, f, a
 	   print "---"
-
+    """
 
 """
 counter = 0

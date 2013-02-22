@@ -57,7 +57,7 @@ def wc(text, word):
 
 def preferences_from_facebook(source):
     cats = ['sport', 'brave', 'travel', 'friendly', 'exploration', 'nature',   'learning']
-    facebook_cats = [
+    facebook_cats = { 
         'sport'       : ['fb', 'cats', 'for', 'sport'],
         'brave'       : [],
         'travel'      : [],
@@ -65,7 +65,7 @@ def preferences_from_facebook(source):
         'exploration' : [],
         'nature'      : [],
         'learning'    : []
-        ]
+        }
     cats_count = [ sum([ wc(source, fw) for fw in facebook_cats[c] ]) for c in cats ]
     N = sum(cats_count) // MAX_VALUE
     cats_score = [ cc // N for cc in cats_count ]
