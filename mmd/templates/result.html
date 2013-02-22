@@ -1,16 +1,31 @@
 {% extends "base.html" %}
 {% block title %} Make My Day{% endblock %}
 {% block content %} 
+
+   
+
 <body>
+	<script src="/site_media/ix/assets/d3.js"></script>
+	<script src="/site_media/ix/assets/jquery.js"></script>	
+   	<script src="/site_media/ix/menuLoader.js"></script>
+   	<link rel="stylesheet" type="text/css" href="/site_media/ix/assets/style.css">	
+
     <div id="container">
         <div id="header">Make my day<br/><div id="headersubtitle">@ Edinburgh</div></div>
-<p> Start </p>
-<p> DATA : </p>
-<p> {{ data}} </p>
-<p> TUPLE </p>
-<p> {{ user_location }} </p>
+  <script>
+ loadMenu('#viz',null, Date.now(), 1100);
+</script>
 
-<p> End </p>
+
+<div id="viz">
+</div>
+<div style="text-align:center; font-size: 60px; margin-top: 30px;">
+Results </div>
+<p> {% autoescape off %}{{ data }}{% endautoescape %} </p>
+
+
+
+
 
 <div id="cm-example" style="width: 900px; height: 700px; float : left"></div>
   <div id="panel" style="width: 200px; height : 500px; float: left; padding-left: 10px"></div>
@@ -18,18 +33,21 @@
   <div id="panel3" style="width: 200px; height : 500px; float: left; padding-left: 10px"></div>
   
   <script language="JavaScript" type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
-  <script language="JavaScript" type="text/javascript" src="/site_media/kuba/jquery.js"></script>
+
+  <script type="text/javascript">
+    	/*var tuple = [[{'rating': {'brave': false, 'nature': true, 'travel': false, 'exploration': true, 'learning': true, 'sport': true, 'friendly': true}, 'name': 'Princes Golf Course', 'age_groups': [], 'type': 'Indoor sport', 'feature': '', 'y': -3.188989, 'x': 55.916628, 'geo': (55.916628, -3.188989), 'description': ''}, {'rating': {'brave': false, 'nature': true, 'travel': false, 'exploration': true, 'learning': true, 'sport': true, 'friendly': true}, 'name': 'Craigentinny Golf Course', 'age_groups': [], 'type': 'Indoor sport', 'feature': '', 'y': -3.134842, 'x': 55.965259, 'geo': (55.965259, -3.134842), 'description': ''}], [{'rating': {'brave': true, 'nature': true, 'travel': true, 'exploration': true, 'learning': true, 'sport': true, 'friendly': false}, 'name': 'Benmore Centre', 'age_groups': [], 'type': 'Outdoor sport', 'feature': '', 'y': -4.974843, 'x': 56.013941, 'geo': (56.013941, -4.974843), 'description': ''}, {'rating': {'brave': true, 'nature': true, 'travel': true, 'exploration': false, 'learning': true, 'sport': true, 'friendly': false}, 'name': 'Outward Bound Metro', 'age_groups': [], 'type': 'Outdoor sport', 'feature': '', 'y': -3.969037, 'x': 55.777636, 'geo': (55.777636, -3.969037), 'description': ''}, {'rating': {'brave': true, 'nature': true, 'travel': true, 'exploration': false, 'learning': true, 'sport': true, 'friendly': false}, 'name': 'Low Port Outdoor Centre', 'age_groups': [], 'type': 'Outdoor sport', 'feature': '', 'y': -3.597184, 'x': 55.977665, 'geo': (55.977665, -3.597184), 'description': ''}, {'rating': {'brave': true, 'nature': true, 'travel': true, 'exploration': false, 'learning': true, 'sport': true, 'friendly': false}, 'name': 'Dounans Centre (Scottish Outdoor Education Centres)', 'age_groups': [], 'type': 'Outdoor sport', 'feature': '', 'y': -4.373692, 'x': 56.180258, 'geo': (56.180258, -4.373692), 'description': ''}, {'rating': {'brave': true, 'nature': true, 'travel': true, 'exploration': false, 'learning': true, 'sport': true, 'friendly': false}, 'name': 'Craigmillar Adventure Project (CAPRO)', 'age_groups': [], 'type': 'Outdoor sport', 'feature': '', 'y': -3.138454, 'x': 55.935135, 'geo': (55.935135, -3.138454), 'description': ''}, {'rating': {'brave': true, 'nature': true, 'travel': true, 'exploration': false, 'learning': true, 'sport': true, 'friendly': false}, 'name': 'Compass Christian Centre', 'age_groups': [], 'type': 'Outdoor sport', 'feature': '', 'y': -3.430462, 'x': 56.798416, 'geo': (56.798416, -3.430462), 'description': ''}, {'rating': {'brave': true, 'nature': true, 'travel': true, 'exploration': false, 'learning': true, 'sport': true, 'friendly': false}, 'name': 'Brian Salvona, Cycle Training', 'age_groups': [], 'type': 'Outdoor sport', 'feature': '', 'y': -3.279714, 'x': 55.908119, 'geo': (55.908119, -3.279714), 'description': ''}, {'rating': {'brave': true, 'nature': true, 'travel': true, 'exploration': false, 'learning': true, 'sport': true, 'friendly': false}, 'name': 'Boots N Paddles', 'age_groups': [], 'type': 'Outdoor sport', 'feature': '', 'y': -4.430632, 'x': 57.453955, 'geo': (57.453955, -4.430632), 'description': ''}]];*/
 
 
-  <script>
-        
-    	var tuple = {{ data }}; // Kuba's vars
-    	var user_location = {{ user_location }};
-  	var asd = "inside";
-	alert(asd);
-	//alert(tuple);
-	var generalInterestList = tuple[0];
-    	var top3List = tuple[1];
+    //Bilyan!!!
+    
+    var user_location = [55.3213, -3.21312];
+    var tuple = {{ data }} ;
+    var generalInterestList = tuple[0];
+    var top3List = tuple[1];
+    //var user_location = ("u&#39;-3.1877301&#39;", "u&#39;55.944454&#39;");
+    //alert(typeof(tuple));
+    //alert(typeof(top3List));
+    alert(top3List[1].x);
 
     var cloudmade = new CM.Tiles.CloudMade.Web({key: 'eb9238c6dc0248efb8cc8d6a285df878'});
     var map = new CM.Map('cm-example', cloudmade);
@@ -40,31 +58,31 @@
     infList[0] = {name: "Appleton Tower", coordinates: [55.944436,-3.186819]};
 
 //Routing
-    if (top3List.length >= 3) {
+    //if (top3List.length >= 3) {
     var directions = new CM.Directions(map, "panel", 'eb9238c6dc0248efb8cc8d6a285df878')
-    var waypoints = [new CM.LatLng(userLocation[0], userLocation[1]), new CM.LatLng(top3List[0].coordinates[0],top3List[0].coordinates[1])];
+    var waypoints = [new CM.LatLng(user_location[0],user_location[1]), new CM.LatLng(top3List[0].x,top3List[0].y)];
     directions.loadFromWaypoints(waypoints, {
         travelMode : 'foot', 
-        preserveViewport : 'True', 
-        draggableWaypoints : 'True'
+        preserveViewport : 'true', 
+        draggableWaypoints : 'true'
     }); 
 
     var directions1 = new CM.Directions(map, "panel2", 'eb9238c6dc0248efb8cc8d6a285df878')
-    var waypoints1 = [new CM.LatLng(top3List[0].coordinates[0], top3List[0].coordinates[1]), new CM.LatLng(top3List[1].coordinates[0],top3List[1].coordinates[1])];
+    var waypoints1 = [new CM.LatLng(top3List[0].x, top3List[0].y), new CM.LatLng(top3List[1].x,top3List[1].y)];
     directions.loadFromWaypoints(waypoints1, {
         travelMode : 'foot', 
-        preserveViewport : 'True', 
-        draggableWaypoints : 'True'
+        preserveViewport : 'true', 
+        draggableWaypoints : 'true'
     }); 
 
     var directions2 = new CM.Directions(map, "panel3", 'eb9238c6dc0248efb8cc8d6a285df878')
-    var waypoints2 = [new CM.LatLng(top3List[1].coordinates[0],top3List[1].coordinates[1]), new CM.LatLng(top3List[2].coordinates[0], top3List[2].coordinates[1])];
+    var waypoints2 = [new CM.LatLng(top3List[1].x,top3List[1].y), new CM.LatLng(top3List[2].x, top3List[2].y)];
     directions2.loadFromWaypoints(waypoints2, {
         travelMode : 'foot', 
-        preserveViewport : 'True', 
-        draggableWaypoints : 'True'
+        preserveViewport : 'true', 
+        draggableWaypoints : 'true'
     }); 
-    }
+    //}
 
 //Icons   
     var infIcon = new CM.Icon();
@@ -80,26 +98,28 @@
     playAreasIcon = new CM.Icon(infIcon, "/site_media/markers/playground.png");
     sportsIcon = new CM.Icon(infIcon, "/site_media/markers/sports.png");
 
- for (var i = 0; i < generalInterestList; i++) {
+//alert(generalInterestList[0].x, generalInterestList[0].y);
+//alert(generalInterestList.length);
+for (var i = 0; i < generalInterestList.length; i++) {
         if (generalInterestList[i].type == 'Museum') 
-           display(museumIcon, generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
+           display(museumIcon, generalInterestList[i].type, generalInterestList[i].name, [generalInterestList[i].x, generalInterestList[i].y]);
         else if (generalInterestList[i].type == 'Park') 
-           display(parksIcon, generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
+           display(parksIcon, generalInterestList[i].type, generalInterestList[i].name, [generalInterestList[i].x, generalInterestList[i].y]);
         else if (generalInterestList[i].type == 'History') 
-           display(historicalIcon, generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
+           display(historicalIcon, generalInterestList[i].type, generalInterestList[i].name, [generalInterestList[i].x, generalInterestList[i].y]);
         else if (generalInterestList[i].type == 'cemetary') 
-           display(cemetaryIcon, generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
+           display(cemetaryIcon, generalInterestList[i].type, generalInterestList[i].name, [generalInterestList[i].x, generalInterestList[i].y]);
         else if (generalInterestList[i].type == 'Outdoor sport') 
-           display(outdoorEducationIcon, generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
+           display(outdoorEducationIcon, generalInterestList[i].type, generalInterestList[i].name, [generalInterestList[i].x, generalInterestList[i].y]);
         else if (generalInterestList[i].type == 'mobile_library') 
-           display(mobileLibraryIcon, generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
+           display(mobileLibraryIcon, generalInterestList[i].type, generalInterestList[i].name, [generalInterestList[i].x, generalInterestList[i].y]);
         else if (generalInterestList[i].type == 'Play Area') 
-           display(playAreasIcon, generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
+           display(playAreasIcon, generalInterestList[i].type, generalInterestList[i].name, [generalInterestList[i].x, generalInterestList[i].y]);
         else if (generalInterestList[i].type == 'Indoor sport') 
-           display(sportsIcon, generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
+           display(sportsIcon, generalInterestList[i].type, generalInterestList[i].name, [generalInterestList[i].x, generalInterestList[i].y]);
         else if (generalInterestList[i].type == 'Community centre') 
-           display(communityCentreIcon, generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
-        else display(generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
+           display(communityCentreIcon, generalInterestList[i].type, generalInterestList[i].name, [generalInterestList[i].x, generalInterestList[i].y]);
+        else display(generalInterestList[i].name, [generalInterestList[i].x, generalInterestList[i].y]);
     }
 
 function display(ic, type, name, location) {
@@ -111,7 +131,7 @@ function display(ic, type, name, location) {
     map.addOverlay(myMarker);
 }    
 
-function display(type, name, location) {
+function display(name, location) {
     var myMarkerLatLng = new CM.LatLng(location[0], location[1]);
     var myMarker = new CM.Marker(myMarkerLatLng, {
 	title: name
@@ -119,8 +139,12 @@ function display(type, name, location) {
     map.addOverlay(myMarker);
 }
 </script>
+
+
 </div>
+
 </div>
+
 </body>
 
 {% endblock %}

@@ -1,3 +1,5 @@
+# coding=utf-8
+
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import loader, RequestContext
@@ -9,6 +11,7 @@ import data_engine.geometry
 import ast
 import re
 import random
+from django.utils.html import escape
 # empty file for importing
 # __init__.py
 import json
@@ -30,7 +33,7 @@ def make(request):
     geoLat = float(request.POST['geoLat'])
     geoLong = float(request.POST['geoLong'])
     dist = request.POST['dist']
-
+    
     print " we start "
     print "debug1"
     print facebook
@@ -76,9 +79,10 @@ def make(request):
     print "print final_dict" + str(final_dict)
     final_user = data_engine.user.User(final_dict,age)
     #data =  data_engine.query.any_2_dict(data_engine.query.get_top_10(final_user))
-    data = data_engine.query.good_weather(final_user, data_engine.geometry.Point(geoLong, geoLat), dist)
-    data1 = (str(data).replace("True","true")).replace("False","false")
-    rc = RequestContext(request, {'data' : data1 , 'user_location': [geoLat,geoLong] , 'var_tuple' : data1} )
+    data = data_engine.query.good_weather(final_user, data_engine.geometry.Point(geoLong, geoLat), 1000.0)
+    html = data_engine.query.generate_bottom(data)
+    data1 = (str(html).replace("True","true")).replace("False","false")
+    rc = RequestContext(request, {'data' : data1 , 'user_location': [geoLat,geoLong] , 'var_tuple' : data1 , 'final_user' : final_user.profile} )
     return render_to_response('result.html',rc)
 
 
