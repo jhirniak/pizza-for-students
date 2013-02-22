@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 {% block title %} Make My Day{% endblock %}
 {% block content %} 
+<body>
+    <div id="container">
+        <div id="header">Make my day<br/><div id="headersubtitle">@ Edinburgh</div></div>
 <p> Start </p>
-{% for x in data %}
+<p> DATA : </p>
+<p> {{ data}} </p>
+<p> TUPLE </p>
+<p> {{ user_location }} </p>
 
-<p>{{ x }}</p>
-
-{% endfor %}
 <p> End </p>
 
 <div id="cm-example" style="width: 900px; height: 700px; float : left"></div>
@@ -17,9 +20,14 @@
   <script language="JavaScript" type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
   <script language="JavaScript" type="text/javascript" src="/site_media/kuba/jquery.js"></script>
 
-  <script type="text/javascript">
-    	var tuple = {{ var_tuple }}; // Kuba's vars
+
+  <script>
+        
+    	var tuple = {{ data }}; // Kuba's vars
     	var user_location = {{ user_location }};
+  	var asd = "inside";
+	alert(asd);
+	//alert(tuple);
 	var generalInterestList = tuple[0];
     	var top3List = tuple[1];
 
@@ -73,22 +81,24 @@
     sportsIcon = new CM.Icon(infIcon, "/site_media/markers/sports.png");
 
  for (var i = 0; i < generalInterestList; i++) {
-        if (generalInterestList[i].type == 'museum') 
+        if (generalInterestList[i].type == 'Museum') 
            display(museumIcon, generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
-        else if (generalInterestList[i].type == 'park') 
+        else if (generalInterestList[i].type == 'Park') 
            display(parksIcon, generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
-        else if (generalInterestList[i].type == 'historical') 
+        else if (generalInterestList[i].type == 'History') 
            display(historicalIcon, generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
         else if (generalInterestList[i].type == 'cemetary') 
            display(cemetaryIcon, generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
-        else if (generalInterestList[i].type == 'outdoor_education') 
+        else if (generalInterestList[i].type == 'Outdoor sport') 
            display(outdoorEducationIcon, generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
         else if (generalInterestList[i].type == 'mobile_library') 
            display(mobileLibraryIcon, generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
-        else if (generalInterestList[i].type == 'play_area') 
+        else if (generalInterestList[i].type == 'Play Area') 
            display(playAreasIcon, generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
-        else if (generalInterestList[i].type == 'sports') 
+        else if (generalInterestList[i].type == 'Indoor sport') 
            display(sportsIcon, generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
+        else if (generalInterestList[i].type == 'Community centre') 
+           display(communityCentreIcon, generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
         else display(generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
     }
 
@@ -109,6 +119,8 @@ function display(type, name, location) {
     map.addOverlay(myMarker);
 }
 </script>
-
+</div>
+</div>
+</body>
 
 {% endblock %}

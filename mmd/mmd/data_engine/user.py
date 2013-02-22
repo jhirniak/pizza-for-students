@@ -38,7 +38,7 @@ class User:
             return sum([ self.profile[p] * location.get_rating(p) for p in self.profile ])
         else:
             return 0
-        
+
     # return list of locations 
     def rate_and_sort(self, locations):
         scored = []
