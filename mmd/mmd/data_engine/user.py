@@ -53,7 +53,7 @@ def wc(text, word):
     if word not in text:
         return 0
     else:
-        return 1 + count_words(text[text.index(word) + len(word):], word)
+        return 1 + wc(text[text.index(word) + len(word):], word)
 
 def preferences_from_facebook(source):
     cats = ['sport', 'brave', 'travel', 'friendly', 'exploration', 'nature',   'learning']
