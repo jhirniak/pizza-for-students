@@ -2,6 +2,7 @@
 
 from data import tree # kd tree ballanced around location data
 from geometry import Infinity, Circle
+from labels import types
 
 # some age_groups and features items got mixed, I think it is because of wrong
 # mapping set-up in the batch program
@@ -71,15 +72,12 @@ def good_weather(user, centre, radius):
     
 def bad_weather(user, centre, radius):
     locs = [ y.data for (x,y) in get_in_radius_scored(u, Point(51.0, -3.0), 100.0) ]
-    #print locs
     indoors = []
     for l in locs:
         if not l.outdoor:
-#            print l
             indoors.append(l)
             if len(indoors) > 9:
                 break
-#    print indoors
     return [ i.__dict__ for i in indoors ]
 
 def get_singleton_connected(all_points):
@@ -88,6 +86,13 @@ def get_singleton_connected(all_points):
     connected  = [ p for p in all_points if p['type'] in connectable ]
     singletons = [ p for p in all_points if p['type'] not in connectable ]
     return (singletons, connected)
+
+def count_types(data):
+    counts = { t : 0 for t in types }
+    for d in data:
+        counts[d['type']] += 1
+    return counts
+        
 
 def ulli_data(data):
     if data in [None, ""]:
@@ -115,13 +120,21 @@ from geometry import Point
 
 print "\n\n\n\n\n\n\n\n\n\n"
 for u in test_users(1):
-    bad = get_singleton_connected(bad_weather(u, Point(51.0, -3.0), 1000.0))
-    print len(bad[0]) + len(bad[1])
-    print bad
+    # get bad weather
+    bad = bad_weather(u, Point(51.0, -3.0), 1000.0)
+    bad_4_map = get_singleton_connected(bad_weather(u, Point(51.0, -3.0), 1000.0))
+    print len(bad_4_map[0]) + len(bad_4_map[1])
+    print bad_4_map
     print "\n\n---\n\n"
-    good = get_singleton_connected(good_weather(u, Point(51.0, -3.0), 1000.0))
-    print len(good[0]) + len(good[1])
-    print good
+    # get good weather
+    good = good_weather(u, Point(51.0, -3.0), 1000.0)
+    good_4_map = get_singleton_connected(good_weather(u, Point(51.0, -3.0), 1000.0))
+    print len(good_4_map[0]) + len(good_4_map[1])
+    print good_4_map
+    print "\n\n---\n\n"
+    # count types
+    print count_types(bad)
+    print count_types(good)
     #print [ y for (x,y) in get_in_radius_scored(u, Point(51.0, -3.0), 100.0) ]
 #    print get_10_to_map(u, Point(51.0, -3.0), 7.5)
     #x= any_2_dict(get_top_10(u))[2]
