@@ -12,6 +12,12 @@ function getWeatherForDay(num, callback) {
           document.write(r.data.error[0].msg);
         }
         else {
+         if (r.data.current_condition[num].precimMM < 2){
+            good = true;
+         }
+         else {
+            good = false;
+         }
          callback({temp_F: r.data.current_condition[num].temp_F, 
                 temp_C: r.data.current_condition[num].temp_C,
                 condition: r.data.current_condition[num].weatherDesc[0].value,
@@ -25,7 +31,9 @@ function getWeatherForDay(num, callback) {
                 wind_speed_kmph : r.data.current_condition[num].windspeedKmph,
                 wind_speed_mph : r.data.current_condition[num].windspeedMiles,
                 wind_dir : r.data.current_condition[num].winddirDegree,
-                img : r.data.current_condition[num]["weatherIconUrl"][0].value});
+                img : r.data.current_condition[num]["weatherIconUrl"][0].value,
+                prediction : good 
+                });
          }
       }, "json");
 }
