@@ -9,8 +9,8 @@
     <script src="/site_media/jquery/js/jquery-1.9.1.js"></script>
     <script src="/site_media/jquery/js/jquery-ui-1.10.1.custom.js"></script>
     <script src="/site_media/jquery/js/jquery.ui.selectmenu.js"></script>
+          
     <script type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
-
 <script>    
     function form(){
     $(".radiogroup").each(function() {
@@ -91,7 +91,7 @@ function submit_form(){
         <div id="header">Make my day<br/><div id="headersubtitle">@ Edinburgh</div></div>
         <div id="form_container">
             <form method="POST" action="make/" id="blah" onsubmit="submit_form()">
-                {% csrf_token %}
+               {% csrf_token %}
                 <div id="age_container">
                     <h2>I am a</h2>
                     <div id="fb-root">
