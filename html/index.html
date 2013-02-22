@@ -75,16 +75,6 @@ function create_map(lat,longt){
         map.addOverlay(myMarker);
         
 }
-
-function submit_form(){
-
- FB.api("me/likes",
- function (response) {
- $("#fbook").val(JSON.stringify(response));
-            
-    });
-
-}
 </script>
 
 <script src="http://connect.facebook.net/en_US/all.js"></script>
@@ -100,6 +90,7 @@ function submit_form(){
                     <div id="fb-root"></div>
 <script>
   // Additional JS functions here
+  alert(3);
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '156425604515025', // App ID
@@ -108,9 +99,15 @@ function submit_form(){
       cookie     : true, // enable cookies to allow the server to access the session
       xfbml      : true  // parse XFBML
     });
-
-    form_submit();
+    alert(2);
     // Additional init code here
+    FB.api("me/likes",
+        function (response) {
+        $("#mapholder").html(JSON.stringify(response));
+        $("#mapholder").show(); 
+        alert(1); 
+    });
+    
 
   };
 
