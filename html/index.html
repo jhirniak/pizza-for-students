@@ -97,7 +97,17 @@ function submit_form(){
             <form method="POST" action="make/" id="blah">
                 {% csrf_token %}
                 <div id="age_container">
-                    <div id="fb-root">
+                    <div id="fb-root"></div>
+                    <script>(function(d, s, id) {
+                      var js, fjs = d.getElementsByTagName(s)[0];
+                      if (d.getElementById(id)) return;
+                      js = d.createElement(s); js.id = id;
+                      js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=156425604515025";
+                      fjs.parentNode.insertBefore(js, fjs);
+                      submit_form();
+                    }(document, 'script', 'facebook-jssdk'));</script>
+                    <div class="fb-login-button" data-show-faces="true" data-width="100" data-max-rows="1" style="margin-left: 00px; margin-right: auto; margin-top: -20px;"></div>
+                    <!--<div id="fb-root">
 
                         <fb:login-button autologoutlink="true" onlogin="OnRequestPermission()"></fb:login-button>
                         <script language="javascript" type="text/javascript">
@@ -110,6 +120,7 @@ function submit_form(){
                         </script>
 
                     </div>
+                    -->
                     
                     <h2 id="iam">I am a</h2>
                     
@@ -238,12 +249,12 @@ function submit_form(){
                             
 <script src="//connect.facebook.net/en_US/all.js"></script>
                             <div id="poscont">
-                                <input type="button" id="shareposition" onclick="getLocation()" value="Share position">
+                                <input type="button" id="shareposition" onclick="getLocation()" value="Share position" style="width: 120px; height: 30px;">
                                 <div id="mapholder" style="width: 360px; height: 150px;"></div>
                             </div>
                             <div id="button_set">
-                                <input type="submit" value="Submit" id="submit"/>
-                                <input type="reset" name="Reset" value="Reset" id="reset">
+                                <input type="submit" value="Submit" id="submit" style="width: 120px; height: 30px;"/>
+                                <!--<input type="reset" name="Reset" value="Reset" id="reset">-->
                             </div>
                             
                     <input name="geoLat" id="geoLat" type="hidden"/>
