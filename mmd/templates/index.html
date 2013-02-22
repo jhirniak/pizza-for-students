@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% block title %} Make My Day{% endblock %}
 {% block content %} 
+<body onload="form()">
+    <div id="container">
+        <div id="header">Make my day<br/><div id="headersubtitle">@ Edinburgh</div></div>
+       
 <div id="form_container" onclick="fuckinbook()">
             <form method="POST" action="make/" id="blah">
                 {% csrf_token %}
@@ -270,6 +274,6 @@ function fuckinbook(){
     });
 }
 </script>
-
+</body>
 {% endblock %}
 

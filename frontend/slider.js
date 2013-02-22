@@ -28,39 +28,18 @@ function setupSlide() {
         d3.select(this).transition()
             .duration(150)
             .attr('opacity', SLIDER_OPACITY)
-    });
+        });
 
-    //drag actions
-    //var dragOrigin;
-    //sliderPanel.call(d3.behavior.drag()
-    //    .on("dragstart", function (d) {
-    //        dragOrigin = d3.mouse(this)[0] - dayLength / 2;
-    //    })
-    //    .on("drag", function (d) {
-    //        var x = d3.mouse(this)[0] - dragOrigin + sliderPos * dayLength;
-    //        var id = Math.floor(x * dayCount / barWidth);
-    //        if (id != sliderPos) {
-    //            moveSlider(id);
-    //            dragOrigin = d3.mouse(this)[0] - dayLength / 2;
-    //        }
-    //    })
-    //    .on("dragend", function (d) {
-    //        delete dragOrigin;
-    //    }));
 
     setupContent();
 }
 
 //move the slider to another day
 function moveSlider(id) {
-    hideContent();
-
-    sliderPos = id;
-
     sliderPanel
-        .transition().duration(450)
+        .transition().duration(TRANSITION_TIME)
         .attr("transform", "translate(" + (dayLength * id) + ",0.1)")
         .each('end', function () {
-            showContent(data[id], CONTENT_W * dayLength, CONTENT_H * barHeight);
         });
+    showContent(data[id], CONTENT_W * dayLength, CONTENT_H * barHeight);
 }

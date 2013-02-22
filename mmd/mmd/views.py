@@ -5,8 +5,9 @@ from django.http import HttpResponseRedirect
 from django import forms
 import data_engine.user
 import data_engine.query
+import data_engine.geometry
 import ast
-
+import re
 import random
 # empty file for importing
 # __init__.py
@@ -26,8 +27,8 @@ def make(request):
     nature = request.POST['nature']
     learning = request.POST['learning']
     facebook = request.POST['facebook'] # this is the JSON string returned by lubo
-    geoLat = request.POST['geoLat']
-    geoLong = request.POST['geoLong']
+    geoLat = float(request.POST['geoLat'])
+    geoLong = float(request.POST['geoLong'])
     dist = request.POST['dist']
 
     print " we start "
@@ -74,9 +75,10 @@ def make(request):
         final_dict = u.profile
     print "print final_dict" + str(final_dict)
     final_user = data_engine.user.User(final_dict,age)
-    data =  data_engine.query.any_2_dict(data_engine.query.get_top_10(final_user))
-    
-    rc = RequestContext(request, {'data' : data } )
+    #data =  data_engine.query.any_2_dict(data_engine.query.get_top_10(final_user))
+    data = data_engine.query.good_weather(final_user, data_engine.geometry.Point(geoLong, geoLat), dist)
+    data1 = (str(data).replace("True","true")).replace("False","false")
+    rc = RequestContext(request, {'data' : data1 , 'user_location': [geoLat,geoLong] , 'var_tuple' : data1} )
     return render_to_response('result.html',rc)
 
 
