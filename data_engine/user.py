@@ -38,7 +38,7 @@ class User:
             return sum([ self.profile[p] * location.get_rating(p) for p in self.profile ])
         else:
             return 0
-        
+
     # return list of locations 
     def rate_and_sort(self, locations):
         scored = []
@@ -53,18 +53,18 @@ def wc(text, word):
     if word not in text:
         return 0
     else:
-        return 1 + count_words(text[text.index(word) + len(word):], word)
+        return 1 + wc(text[text.index(word) + len(word):], word)
 
 def preferences_from_facebook(source):
     cats = ['sport', 'brave', 'travel', 'friendly', 'exploration', 'nature',   'learning']
-    facebook_cats = { 
-        'sport'       : ['fb', 'cats', 'for', 'sport'],
-        'brave'       : [],
-        'travel'      : [],
-        'friendly'    : [],
-        'exploration' : [],
-        'nature'      : [],
-        'learning'    : []
+    facebook_cats = {
+        'sport'       : ['Amateur Sports Team','Athlete','Professional Sports Team','School Sports Team','Spas/Beauty/Personal Care','Sports League','Sports/Recreation/Activities','Vitamins/Supplements'],
+        'brave'       : ['Automobiles and Parts','Automotive','Business Person','Cars','Community/Government','Company','Computers/Technology','Consulting/Business Services','Editor','Fictional Character','Insurance Company','Internet/Software','Kitchen/Cooking','Lawyer','Legal/Law','Local Business','Musical Instrument','Musician/Band','Non-Profit Organization','Political Organization','Small Business'],
+        'travel'      : ['Airport','Bags/Luggage','Coach','Monarch','Producer','Public Places','Tours/Sightseeing','Transit Stop','Transport/Freight','Transportation','Travel/Leisure'],
+        'friendly'    : ['Baby Goods/Kids Goods','Bar','Business Services','Chef','Church/Religious Organization','Club','Comedian','Community Organization','Concert Venue','Entertainer','Event Planning/Event Services','Games/Toys','Government Official','Government Organization','News Personality','Non-Governmental Organization (NGO)','Political Party','Radio Station','Shopping/Retail','Teacher','Wine/Spirits'],
+        'exploration' : ['Artist','Camera/Photo','Clothing','Dancer','Drugs','Food/Beverages','Jewelry/Watches','Journalist','Magazine','Media/News/Publishing','Mining/Materials','Movie','Movie Theater','Movies/Music','Music Chart','Music Video','Politician','Studio','TV Channel'],
+        'nature'      : ['Chemicals','Farming/Agriculture','Health/Beauty','Landmark','Outdoor Gear/Sporting Goods','Patio/Garden','Pet Services','Pet Supplies'],
+        'learning'    : ['Actor/Director', 'Aerospace/Defense','Album','Arts/Entertainment/Nightlife','Attractions/Things to Do','Bank/Financial Institution','Bank/Financial Services','Biotechnology','Book','Book Store','Building Materials','Computers','Concert Tour','Doctor','Education','Electronics','Energy/Utility','Engineering/Construction','Health/Medical/Pharmaceuticals','Health/Medical/Pharmacy','Library','Museum/Art Gallery','Telecommunication']
         }
     cats_count = [ sum([ wc(source, fw) for fw in facebook_cats[c] ]) for c in cats ]
     N = sum(cats_count) // MAX_VALUE
