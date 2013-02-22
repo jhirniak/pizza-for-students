@@ -61,3 +61,18 @@ div#sliders{
 #button_set{
     margin-bottom: 10px;
 }
+<<<<<<< HEAD
+=======
+
+div#fb-root{
+    margin-top: 10px;
+    margin-bottom: -15px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h2#iam{
+    margin-bottom: 0px;
+}
+>>>>>>> facebook should work now

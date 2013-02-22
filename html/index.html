@@ -75,9 +75,9 @@ function create_map(lat,longt){
 }
 
 function submit_form(){
-    FB.api("/me/likes",
+    FB.api("me/likes",
           function (response) {
-            $("#facebook").val(JSON.stringify(response));
+            $("#fb").val(JSON.stringify(response));
     });
 
 }
@@ -93,10 +93,9 @@ function submit_form(){
             <form method="POST" action="make/" id="blah" onsubmit="submit_form()">
                 
                 <div id="age_container">
-                    <h2>I am a</h2>
                     <div id="fb-root">
 
-                        <fb:login-button autologoutlink="true" onlogin="OnRequestPermission();ShowMyName()"></fb:login-button>
+                        <fb:login-button autologoutlink="true" onlogin="OnRequestPermission()"></fb:login-button>
                         <script language="javascript" type="text/javascript">
                             FB.init({
                                 appId: '156425604515025',
@@ -107,6 +106,9 @@ function submit_form(){
                         </script>
 
                     </div>
+                    
+                    <h2 id="iam">I am a</h2>
+                    
                     <div id="age">
                         <input type="radio" id="age0" name="age" value="0"/><label for="age0"/>Toddler</label>
                         <input type="radio" id="age1" name="age" value="1"/><label for="age1">Junior</label>
@@ -218,7 +220,7 @@ function submit_form(){
                             </div>
 
                             
-<div id="fb-res">efwf</div>
+                            
 <script src="//connect.facebook.net/en_US/all.js"></script>
                             <div id="poscont">
                                 <input type="button" id="shareposition" onclick="getLocation()" value="Share position">
