@@ -1,65 +1,25 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!doctype html>
+<html lang="uk">
 <head>
-<title>{% block title %}{% endblock %}</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="/site_media/jquery/css/sunny/jquery-ui-1.10.1.custom.css" rel="stylesheet">
+    <link href="/site_media/css/form.css" rel="stylesheet">
+    <link href="/site_media/css/body.css" rel="stylesheet">
+    <script src="/site_media/jquery/js/jquery-1.9.1.js"></script>
+    <script src="/site_media/jquery/js/jquery-ui-1.10.1.custom.js"></script>
+    <script src="/site_media/jquery/js/jquery.ui.selectmenu.js"></script>
+       
+    <script type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
+
+
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+
 </head>
-
-<body>
-
-<form name="form1" method="post" action="make/">
-{% csrf_token %}
-<div>
-    <input name="text" type="text" id="wtf">
-</div>
-
-<div>
-    <label><input type="radio" name="radiogr" value="1">1</label>
-    <label><input type="radio" name="radiogr" value="2">2</label> </div>
-<div>
-
- <select name="age">
-      <option value="toddler">toddler</option>
-      <option value="junior">junior</option>
-      <option value="teenager">teenager</option>
-      <option value="student">student</option>
-      <option value="adult">adult</option>
-      <option value="senior">senior</option>
-    </select>
-</div>
-<div>
-Move the sliders to reflect how much inclined are you to do one activity instead of another :
-</div>
-<div>
-<input type="radio" name="sport" value="1">
-<input type="radio" name="sport" value="2">
-<input type="radio" name="sport" value="3">
-<input type="radio" name="sport" value="4">
-<input type="radio" name="sport" value="5">
-<input type="radio" name="sport" value="6">
-<input type="radio" name="sport" value="7">
-<input type="radio" name="sport" value="8">
-<input type="radio" name="sport" value="9">I'd rather do sport
-</div>
-
-<div>
-<input type="radio" name="brave" value="1">
-<input type="radio" name="brave" value="2">
-<input type="radio" name="brave" value="3">
-<input type="radio" name="brave" value="4">
-<input type="radio" name="brave" value="5">
-<input type="radio" name="brave" value="6">
-<input type="radio" name="brave" value="7">
-<input type="radio" name="brave" value="8">
-<input type="radio" name="brave" value="9">
-</div>
-
-
-<div>
-    <input type="submit" name="Submit" value="Submit">
-</div>
-
-</form>
+<body onload="form()">
+    <div id="container">
+        <div id="header">Make my day<br/><div id="headersubtitle">@ Edinburgh</div></div>
+        {% block content %}
+   {% endblock %}
 </body>
 </html>

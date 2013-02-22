@@ -1,4 +1,6 @@
-function(disp_map_elem, disp_dir1_elem, disp_dir2_elem, display_dir3_elem, generalInterestList, userLocation) {
+function map_function(disp_map_elem, disp_dir1_elem, disp_dir2_elem, display_dir3_elem, tuple, userLocation) {
+    generalInterestList = tuple[0];
+    top3List = tuple[1];
     //Example data - 
     //{'features': [], 'activities': '', 'brave': False, 'description': '', 'nature': False, 'travel': False, 'exploration': False, location:(55.0152,-3.0141), 'learning': False, 'sport': True, 'type': '', 'friendly': True, 'name': 'Appleton Tower', 'type': 'Informatics'}
 
@@ -11,6 +13,7 @@ function(disp_map_elem, disp_dir1_elem, disp_dir2_elem, display_dir3_elem, gener
     infList[0] = {name: "Appleton Tower", coordinates: [55.944436,-3.186819]};
 
 //Routing
+    if (top3List.length >= 3) {
     var directions = new CM.Directions(map, display_dir1_elem, 'eb9238c6dc0248efb8cc8d6a285df878')
     var waypoints = [new CM.LatLng(userLocation[0], userLocation[1]), new CM.LatLng(top3List[0].coordinates[0],top3List[0].coordinates[1])];
     directions.loadFromWaypoints(waypoints, {
@@ -34,6 +37,7 @@ function(disp_map_elem, disp_dir1_elem, disp_dir2_elem, display_dir3_elem, gener
         preserveViewport : 'True', 
         draggableWaypoints : 'True'
     }); 
+    }
 
 
 //Icons   

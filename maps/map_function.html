@@ -1,22 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-<head>
-  <title>CloudMade JavaScript API example</title>
-</head>
-<body>
-  
-  <div id="cm-example" style="width: 900px; height: 700px; float : left"></div>
-  <div id="panel" style="width: 100px; height : 500px; float: left; padding-left: 10px"></div>
-  <div id="panel2" style="width: 100px; height : 500px; float: left; padding-left: 10px"></div>
-  
-  <script type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
-  <script type="text/javascript">
-function(generalInterestList, userLocation) {
+function(disp_map_elem, disp_dir1_elem, disp_dir2_elem, display_dir3_elem, generalInterestList, userLocation) {
     //Example data - 
     //{'features': [], 'activities': '', 'brave': False, 'description': '', 'nature': False, 'travel': False, 'exploration': False, location:(55.0152,-3.0141), 'learning': False, 'sport': True, 'type': '', 'friendly': True, 'name': 'Appleton Tower', 'type': 'Informatics'}
 
     var cloudmade = new CM.Tiles.CloudMade.Web({key: 'eb9238c6dc0248efb8cc8d6a285df878'});
-    var map = new CM.Map('cm-example', cloudmade);
+    var map = new CM.Map(disp_map_elem, cloudmade);
     map.setCenter(new CM.LatLng(userLocation[0], userLocation[1]), 15);
     
 //Our favourite place
@@ -24,7 +11,7 @@ function(generalInterestList, userLocation) {
     infList[0] = {name: "Appleton Tower", coordinates: [55.944436,-3.186819]};
 
 //Routing
-    var directions = new CM.Directions(map, "panel", 'eb9238c6dc0248efb8cc8d6a285df878')
+    var directions = new CM.Directions(map, display_dir1_elem, 'eb9238c6dc0248efb8cc8d6a285df878')
     var waypoints = [new CM.LatLng(userLocation[0], userLocation[1]), new CM.LatLng(top3List[0].coordinates[0],top3List[0].coordinates[1])];
     directions.loadFromWaypoints(waypoints, {
         travelMode : 'foot', 
@@ -32,7 +19,7 @@ function(generalInterestList, userLocation) {
         draggableWaypoints : 'True'
     }); 
 
-    var directions1 = new CM.Directions(map, "panel", 'eb9238c6dc0248efb8cc8d6a285df878')
+    var directions1 = new CM.Directions(map, display_dir2_elem, 'eb9238c6dc0248efb8cc8d6a285df878')
     var waypoints1 = [new CM.LatLng(top3List[0].coordinates[0], top3List[0].coordinates[1]), new CM.LatLng(top3List[1].coordinates[0],top3List[1].coordinates[1])];
     directions.loadFromWaypoints(waypoints1, {
         travelMode : 'foot', 
@@ -40,7 +27,7 @@ function(generalInterestList, userLocation) {
         draggableWaypoints : 'True'
     }); 
 
-    var directions2 = new CM.Directions(map, "panel2", 'eb9238c6dc0248efb8cc8d6a285df878')
+    var directions2 = new CM.Directions(map, display_dir3_elem, 'eb9238c6dc0248efb8cc8d6a285df878')
     var waypoints2 = [new CM.LatLng(top3List[1].coordinates[0],top3List[1].coordinates[1]), new CM.LatLng(top3List[2].coordinates[0], top3List[2].coordinates[1])];
     directions2.loadFromWaypoints(waypoints2, {
         travelMode : 'foot', 
@@ -83,27 +70,21 @@ function(generalInterestList, userLocation) {
            display(sportsIcon, generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
         else display(generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
     }
-
-        function display(ic, type, name, location) {
-        var myMarkerLatLng = new CM.LatLng(location[0], location[1]);
-        var myMarker = new CM.Marker(myMarkerLatLng, {
-	    title: name,
-            icon: ic
-        });
-        map.addOverlay(myMarker);
-
-    }    
-
-    function display(type, name, location) {
-        var myMarkerLatLng = new CM.LatLng(location[0], location[1]);
-        var myMarker = new CM.Marker(myMarkerLatLng, {
-	    title: name
-        });
-        map.addOverlay(myMarker);
-
-    }  
 }
-  </script>
+function display(ic, type, name, location) {
+    var myMarkerLatLng = new CM.LatLng(location[0], location[1]);
+    var myMarker = new CM.Marker(myMarkerLatLng, {
+        title: name,
+        icon: ic
+    });
+    map.addOverlay(myMarker);
+}    
 
-</body>
-</html>
+function display(type, name, location) {
+    var myMarkerLatLng = new CM.LatLng(location[0], location[1]);
+    var myMarker = new CM.Marker(myMarkerLatLng, {
+	title: name
+    });
+    map.addOverlay(myMarker);
+
+}
