@@ -195,7 +195,16 @@
 <script src="//connect.facebook.net/en_US/all.js"></script>
                             <div id="poscont">
                                 <input type="button" id="shareposition" onclick="getLocation()" value="Share position" style="width: 120px; height: 30px;">
-                                <div id="mapholder" style="width: 360px; height: 150px;"></div>
+                                <div id="mapholder" style="width: 360px; height: 150px;">
+                                    <div id="dist" style="width: 365px; margin-left: -5px;">
+                                        Select a search radius from your location<br/>
+                                    <input type="radio" id="dist0" name="dist" value="1.5" style="width: 70px;"/><label for="dist0"/>1.5 miles</label>
+                                    <input type="radio" id="dist1" name="dist" value="3" style="width: 70px;"/><label for="dist1">3 miles</label>
+                                    <input type="radio" id="dist2" name="dist" value="5" style="width: 70px;"/><label for="dist2">5 miles</label>
+                                    <input type="radio" id="dist3" name="dist" value="10" style="width: 70px;"/><label for="dist3">10 miles</label>
+                                    <input type="radio" id="dist4" name="dist" value="1000" style="width: 70px;" checked="checked"/><label for="dist4">Everywhere</label>
+                                </div>    
+                                </div>
                             </div>
                             <div id="button_set">
                                 <input type="submit" value="Submit" id="submit" style="width: 120px; height: 30px;"/>
@@ -229,6 +238,8 @@
     }
     $(function(){
         $("#age").buttonset();
+        $("#dist").buttonset();
+        
         $("#submit").button();
         $("#reset").button();
         
