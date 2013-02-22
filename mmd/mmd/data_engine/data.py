@@ -1,3 +1,5 @@
+import pickle
+
 class Node: pass
 
 class KDtree:
@@ -44,11 +46,15 @@ def kdtree(nodes, key, depth=0):
     node.right_child = kdtree(nodes[median + 1:], key, depth + 1)
     return node
 
+def saveobject(obj, filename):
+    with open(filename, 'wb') as output:
+        pickle.dump(obj, output, pickle.HIGHEST_PROTOCOL)
+
 # test
 
 from label_data import data
 from geometry import Point, Square, Circle
 
 tree = KDtree(data, location_key)
-print len(tree.in_area(Square(Point(45.0,-5.0), Point(55.99,5.0))))
-print len(tree.in_area(Circle(Point(45.0,-5.0), 11.8)))
+#print len(tree.in_area(Square(Point(45.0,-5.0), Point(55.99,5.0))))
+#print len(tree.in_area(Circle(Point(45.0,-5.0), 11.8)))
