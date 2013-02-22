@@ -106,13 +106,15 @@ def generate_bottom(data):
     bottom = ""
     for d in data:
         bottom += "<h1>" + d['name'] + "</h1>"
-        bottom += "<h2>Description:</h2><p>" + d['description'] + "</p>"
+        if 'description' in d and d['description']:
+            bottom += "<h2>Description:</h2><p>" + d['description'] + "</p>"
         if 'features' in d.keys():
             bottom += "<h2>Features</h2>"
             bottom += ulli_data(d['features'])
         if 'activities' in d.keys():
             bottom += "<h2>Activities:</h2>"
             bottom += ulli_data(d['activities'])
+    return bottom
 
 # example usage
 from user import test_users
@@ -135,6 +137,11 @@ for u in test_users(1):
     # count types
     print count_types(bad)
     print count_types(good)
+    # print bottom for website
+    print "\n\n---\n\n"
+    print generate_bottom(bad)
+    print "\n\n...\n\n"
+    print generate_bottom(good)
     #print [ y for (x,y) in get_in_radius_scored(u, Point(51.0, -3.0), 100.0) ]
 #    print get_10_to_map(u, Point(51.0, -3.0), 7.5)
     #x= any_2_dict(get_top_10(u))[2]
