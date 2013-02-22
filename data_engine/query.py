@@ -64,8 +64,19 @@ def get_top_3_in_radius(user, centre, radius):
 def get_top_3_in_radius_2_dict(user, centre, radius):
     return [ t.data.__dict__ for t in get_top_3_in_radius(user, centre, radius) ]
 
+def get_10_to_map(user, centre, radius):
+    connectable = ['Museum', 'Play Area', 'Outdoor sport']
+
+    all_points = any_2_dict(get_top_10_in_radius(user, centre, radius))
+    connected  = [ p for p in all_points if p['type'] in connectable ]
+    singletons = [ p for p in all_points if p['type'] not in connectable ]
+    return (singletons, connected)
+
+
 # example usage
 from user import test_users
+from geometry import Point
 
+print "\n\n\n\n\n\n\n\n\n\n"
 for u in test_users(1):
-    print any_2_dict(get_top_3(u))
+    print get_10_to_map(u, Point(-3.0, 51.0), 100)

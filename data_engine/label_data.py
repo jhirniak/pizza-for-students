@@ -130,7 +130,7 @@ monuments = process_data(csvdata[2], fieldmap=fieldmap, fixed={'type' : 'History
 
 # Play areas
 fieldmap = bools_to_one('Play facilities')
-fieldmap.update({'name' : 'Site', 'features' : 'Play facilities', 'location' : 'Location map', 'age_groups' : 'Play facilities'})
+fieldmap.update({'name' : 'Site', 'features' : 'Play facilities', 'activities': 'Play facilities', 'location' : 'Location map', 'age_groups' : 'Play facilities', 'address': 'Address', 'postcode': 'Postcode', 'telephone': 'Telephone'})
 play_areas = process_data(csvdata[3], fieldmap=fieldmap, fixed={'type' : 'Play Area', 'sport' : True, 'friendly' : True, 'nature' : 'True', 'outdoor' : True}, default={})
 
 # Community centres
@@ -151,14 +151,12 @@ fieldmap.update({'name' : 'Name', 'features' : 'Facilities', 'age_groups' : 'Fac
 		 'url' : 'More information'})
 sport_facilities = process_data(csvdata[6], fieldmap=fieldmap, fixed={'type' : 'Indoor sport', 'sport' : True, 'friendly' : True, 'outdoor' : False}, default={})
 
-print sport_facilities
-
-
 #fieldmap = bools_to_one('type')
 #fieldmap = fieldmap.update({'location' : 'location', 'name' : 'name', 'type' : 'type'})
 #test_locations = process_data(csvdata[7], fieldmap=fieldmap, fixed={'friendly' : True}, default={})
 
 r = museums + parks + monuments + play_areas + community_centres + outdoor_educators + sport_facilities #+ test_locations
+print play_areas
 
 data = map(dict2loc, r)
 
