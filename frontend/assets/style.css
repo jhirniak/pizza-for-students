@@ -9,6 +9,16 @@ rect#menuSelection {
     fill: black;
 }
 
+rect.content {
+    /* color: auto */
+
+}
+
+path.transition {
+    opacity: 1;
+}
+
+
 body {
   font-family: Helvetica, Arial, sans;
   padding: 20px;
