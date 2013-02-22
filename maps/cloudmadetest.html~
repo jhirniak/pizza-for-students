@@ -17,6 +17,9 @@
     var cloudmade = new CM.Tiles.CloudMade.Web({key: 'eb9238c6dc0248efb8cc8d6a285df878'});
     var map = new CM.Map('cm-example', cloudmade);
     map.setCenter(new CM.LatLng(55.945, -3.187), 15);
+    var sidebar = new CM.LocationSidebar({key: 'eb9238c6dc0248efb8cc8d6a285df878'});
+    map.setSidebar(sidebar);
+    map.openSidebar();
 
     var infList = new Array();
     infList[0] = {name: "Appleton Tower", coordinates: [55.944436,-3.186819]};
@@ -75,6 +78,8 @@
     getWeatherForDay(0, function(j) {
         document.getElementById('weather').innerHTML = '<img src='+j.img+'>'; //
     });
+
+
     //document.getElementById('weather').innerHTML = x;
     //document.getElementById('weather').innerHTML = '<img src='+x.img+'>'; //This prints to div container
 
