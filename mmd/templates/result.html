@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block title %} Make My Day{% endblock %}
+{% block content %} 
+<p> Start </p>
+{% for x in data %}
+
+<p>{{ x }}</p>
+
+{% endfor %}
+<p> End </p>
+
+<div id="cm-example" style="width: 900px; height: 700px; float : left"></div>
+  <div id="panel" style="width: 200px; height : 500px; float: left; padding-left: 10px"></div>
+  <div id="panel2" style="width: 200px; height : 500px; float: left; padding-left: 10px"></div>
+  <div id="panel3" style="width: 200px; height : 500px; float: left; padding-left: 10px"></div>
+  
+  <script language="JavaScript" type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
+  <script language="JavaScript" type="text/javascript" src="/site_media/kuba/jquery.js"></script>
+
+  <script type="text/javascript">
+    	var tuple = {{ var_tuple }}; // Kuba's vars
+    	var user_location = {{ user_location }};
+	var generalInterestList = tuple[0];
+    	var top3List = tuple[1];
+
+    var cloudmade = new CM.Tiles.CloudMade.Web({key: 'eb9238c6dc0248efb8cc8d6a285df878'});
+    var map = new CM.Map('cm-example', cloudmade);
+    map.setCenter(new CM.LatLng(55.945, -3.187), 15);
+  
+ //Our favourite place
+    var infList = new Array();
+    infList[0] = {name: "Appleton Tower", coordinates: [55.944436,-3.186819]};
+
+//Routing
+    if (top3List.length >= 3) {
+    var directions = new CM.Directions(map, "panel", 'eb9238c6dc0248efb8cc8d6a285df878')
+    var waypoints = [new CM.LatLng(userLocation[0], userLocation[1]), new CM.LatLng(top3List[0].coordinates[0],top3List[0].coordinates[1])];
+    directions.loadFromWaypoints(waypoints, {
+        travelMode : 'foot', 
+        preserveViewport : 'True', 
+        draggableWaypoints : 'True'
+    }); 
+
+    var directions1 = new CM.Directions(map, "panel2", 'eb9238c6dc0248efb8cc8d6a285df878')
+    var waypoints1 = [new CM.LatLng(top3List[0].coordinates[0], top3List[0].coordinates[1]), new CM.LatLng(top3List[1].coordinates[0],top3List[1].coordinates[1])];
+    directions.loadFromWaypoints(waypoints1, {
+        travelMode : 'foot', 
+        preserveViewport : 'True', 
+        draggableWaypoints : 'True'
+    }); 
+
+    var directions2 = new CM.Directions(map, "panel3", 'eb9238c6dc0248efb8cc8d6a285df878')
+    var waypoints2 = [new CM.LatLng(top3List[1].coordinates[0],top3List[1].coordinates[1]), new CM.LatLng(top3List[2].coordinates[0], top3List[2].coordinates[1])];
+    directions2.loadFromWaypoints(waypoints2, {
+        travelMode : 'foot', 
+        preserveViewport : 'True', 
+        draggableWaypoints : 'True'
+    }); 
+    }
+
+//Icons   
+    var infIcon = new CM.Icon();
+    infIcon.image = "/site_media/markers/computers.png";
+    infIcon.iconSize = new CM.Size(32, 37);
+    museumIcon = new CM.Icon(infIcon, "/site_media/markers/museum.png");
+    parksIcon = new CM.Icon(infIcon, "/site_media/markers/park.png");
+    historicalIcon = new CM.Icon(infIcon, "/site_media/markers/historical.png");
+    cemetaryIcon = new CM.Icon(infIcon, "/site_media/markers/grave.png");
+    outdoorEducationIcon = new CM.Icon(infIcon, "/site_media/markers/outdooreducation.png");
+    communityCentreIcon = new CM.Icon(infIcon, "/site_media/markers/communitycenter.png");
+    mobileLibraryIcon = new CM.Icon(infIcon, "/site_media/markers/library.png");
+    playAreasIcon = new CM.Icon(infIcon, "/site_media/markers/playground.png");
+    sportsIcon = new CM.Icon(infIcon, "/site_media/markers/sports.png");
+
+ for (var i = 0; i < generalInterestList; i++) {
+        if (generalInterestList[i].type == 'museum') 
+           display(museumIcon, generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
+        else if (generalInterestList[i].type == 'park') 
+           display(parksIcon, generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
+        else if (generalInterestList[i].type == 'historical') 
+           display(historicalIcon, generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
+        else if (generalInterestList[i].type == 'cemetary') 
+           display(cemetaryIcon, generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
+        else if (generalInterestList[i].type == 'outdoor_education') 
+           display(outdoorEducationIcon, generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
+        else if (generalInterestList[i].type == 'mobile_library') 
+           display(mobileLibraryIcon, generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
+        else if (generalInterestList[i].type == 'play_area') 
+           display(playAreasIcon, generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
+        else if (generalInterestList[i].type == 'sports') 
+           display(sportsIcon, generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
+        else display(generalInterestList[i].type, generalInterestList[i].name, generalInterestList[i].location);
+    }
+
+function display(ic, type, name, location) {
+    var myMarkerLatLng = new CM.LatLng(location[0], location[1]);
+    var myMarker = new CM.Marker(myMarkerLatLng, {
+        title: name,
+        icon: ic
+    });
+    map.addOverlay(myMarker);
+}    
+
+function display(type, name, location) {
+    var myMarkerLatLng = new CM.LatLng(location[0], location[1]);
+    var myMarker = new CM.Marker(myMarkerLatLng, {
+	title: name
+    });
+    map.addOverlay(myMarker);
+}
+</script>
+
+
+{% endblock %}
