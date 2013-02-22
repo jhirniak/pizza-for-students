@@ -18,7 +18,7 @@ def between(boundary, node):
     if not node:
         return []
 
-    if boundary.contains(node.location()):
+    if boundary.contains(node.location):
         return [node] + between(boundary, node.left_child) + between(boundary, node.right_child)
     else:
         return []

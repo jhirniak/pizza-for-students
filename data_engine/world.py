@@ -56,7 +56,7 @@ class Description:
         self.description = description
     
 class Location(Point, Rating, Feature, Description):
-    def __init__(self, location, cat='', name='', rating=[], age_groups=[], feature=[], description=''):
+    def __init__(self, location, cat='', name='', rating=[], age_groups=[], feature=[], description='', rest={}):
         Point.__init__(self, location.x, location.y)
         self.geo = (self.x, self.y) # redundant, but may be useful for Kuba
         self.name = name
