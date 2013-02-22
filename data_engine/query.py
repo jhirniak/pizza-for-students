@@ -16,6 +16,19 @@ def any_2_dict(x):
     else:
         return [ t.data.__dict__ for t in x ]
 
+# creates output for map
+def get_for_map(x, accepted_fields):
+    return [ xs for xs in x if xs in accepted_fields ]
+
+# returns dictionary with 3 fields:
+# . 'location'    : (longitude, latitude)
+# . 'name'        : name
+# . 'type'        : type (e.g. Museum, Gallery, Park etc.)
+# . 'description' : description
+def get_for_map_summary(x):
+    accepted_fields = ['location', 'name', 'type', 'description']
+    return get_for_map(x, accepted_fields)
+
 def get_them_all():
     return tree.in_area(Infinity())
 

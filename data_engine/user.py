@@ -5,16 +5,19 @@ from data import Node
 # statics
 toddler = 0; junior = 1; teen = 2; student = 3; adult = 4; senior = 5
 
+MEAN_VALUE = 4 # out of 0..9
+MAX_VALUE = 9
+
 class User:
     def __init__(self, preferences, age):
         self.profile = {
-            'sport'       : 0,
-            'brave'       : 0,
-            'travel'      : 0,
-            'friendly'    : 0,
-            'exploration' : 0,
-            'nature'      : 0,
-            'learning'    : 0
+            'sport'       : MEAN_VALUE,
+            'brave'       : MEAN_VALUE,
+            'travel'      : MEAN_VALUE,
+            'friendly'    : MEAN_VALUE,
+            'exploration' : MEAN_VALUE,
+            'nature'      : MEAN_VALUE,
+            'learning'    : MEAN_VALUE,
             }
         for p in self.profile:
             self.profile[p] = preferences[p]
@@ -45,6 +48,28 @@ class User:
 
     def println(self):
         print self.profile
+
+def wc(text, word):
+    if word not in text:
+        return 0
+    else:
+        return 1 + count_words(text[text.index(word) + len(word):], word)
+
+def preferences_from_facebook(source):
+    cats = ['sport', 'brave', 'travel', 'friendly', 'exploration', 'nature',   'learning']
+    facebook_cats = [
+        'sport'       : ['fb', 'cats', 'for', 'sport'],
+        'brave'       : [],
+        'travel'      : [],
+        'friendly'    : [],
+        'exploration' : [],
+        'nature'      : [],
+        'learning'    : []
+        ]
+    cats_count = [ sum([ wc(source, fw) for fw in facebook_cats[c] ]) for c in cats ]
+    N = sum(cats_count) // MAX_VALUE
+    cats_score = [ cc // N for cc in cats_count ]
+    return { cats[i] : cats_score[i] for i in range(len(cats)) }
 
 # testing
 # all int values from [0..8], total 9
