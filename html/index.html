@@ -39,8 +39,6 @@
 
 <script>
 var x=document.getElementById("mapholder");
-var geoLat=document.getElementById("geoLat");
-var geoLong=document.getElementById("geoLong");
 
 function getLocation(){
   if (navigator.geolocation){
@@ -49,8 +47,9 @@ function getLocation(){
   else{x.innerHTML="";}
   }
 function showPosition1(position){
-  geoLat.val(position.coords.latitude);
-  geoLong.val(position.coords.longitude);	
+    alert(position.coords.latitude);
+  $("#geoLat").val(position.coords.latitude);
+  $("#geoLong").val(position.coords.longitude);	
   
 }
   
@@ -58,6 +57,8 @@ function showPosition(position){
     //var latlon=position.coords.latitude+","+position.coords.longitude;
     $("#mapholder").show();
     $("#shareposition").hide();
+    $("#geoLat").val(position.coords.latitude);
+    $("#geoLong").val(position.coords.longitude);	
     create_map(position.coords.latitude,position.coords.longitude);
 }
   
@@ -75,9 +76,10 @@ function create_map(lat,longt){
 }
 
 function submit_form(){
-    FB.api("me/likes",
+    $("#blah").submit();
+ FB.api("me/likes",
           function (response) {
-            $("#fb").val(JSON.stringify(response));
+            $("#fbook").val(JSON.stringify(response));
     });
 
 }
@@ -90,8 +92,8 @@ function submit_form(){
     <div id="container">
         <div id="header">Make my day<br/><div id="headersubtitle">@ Edinburgh</div></div>
         <div id="form_container">
-            <form method="POST" action="make/" id="blah" onsubmit="submit_form()">
-                
+            <form method="POST" action="make/" id="blah" onsubmit="">
+                {% csrf_token %}
                 <div id="age_container">
                     <div id="fb-root">
 
@@ -227,13 +229,13 @@ function submit_form(){
                                 <div id="mapholder" style="width: 360px; height: 150px;"></div>
                             </div>
                             <div id="button_set">
-                                <input type="submit" value="Submit" id="submit"/>
+                                <input type="button" value="Submit" id="submit" onclick="submit_form()"/>
                                 <input type="reset" name="Reset" value="Reset" id="reset">
                             </div>
                             
                     <input name="geoLat" id="geoLat" type="hidden"/>
                     <input name="geoLong" id="geoLong" type="hidden"/>
-                    <input name="facebook" id="fb" type="hidden"/>
+                    <input name="facebook" id="fbook" type="hidden"/>
                     
                     
                 </div>
