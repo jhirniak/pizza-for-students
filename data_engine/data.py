@@ -40,7 +40,7 @@ def kdtree(nodes, key, depth=0):
  
     # Create node and construct subtrees
     node = Node()
-    node.location = nodes[median].location
+    node.location = Point(nodes[median].x, nodes[median].y)
     node.data = nodes[median]
     node.left_child = kdtree(nodes[:median], key, depth + 1)
     node.right_child = kdtree(nodes[median + 1:], key, depth + 1)

@@ -92,7 +92,7 @@ def process_data(csvfile, fieldmap, fixed={}, default={}, delimiter=',', quotech
             
 
 def dict2loc(d):    
-    return Location(d['location'], d['type'], d['name'], [ ds for ds in bools if d[ds] ], d['features'], d['description'])
+    return Location(d['location'], d['type'], d['name'], [ ds for ds in bools if d[ds] ], d['features'], d['description'], d['outdoor'])
 
 def dict2area():
     pass

@@ -52,11 +52,12 @@ class Feature:
         return feature in self.feature
 
 class Description:
-    def __init__(self, description=''):
+    def __init__(self, description='', outdoor=True):
         self.description = description
+        self.outdoor = outdoor
     
 class Location(Point, Rating, Feature, Description):
-    def __init__(self, location, cat='', name='', rating=[], age_groups=[], feature=[], description='', rest={}):
+    def __init__(self, location, cat='', name='', rating=[], age_groups=[], feature=[], description='', outdoor=True):
         Point.__init__(self, location.x, location.y)
         self.geo = (self.x, self.y) # redundant, but may be useful for Kuba
         self.name = name
@@ -64,7 +65,7 @@ class Location(Point, Rating, Feature, Description):
         Rating.__init__(self, rating)
         self.age_groups = age_groups
         Feature.__init__(self, feature)
-        Description.__init__(self, description)
+        Description.__init__(self, description, outdoor)
 
     def latitude(self):
         return self.x

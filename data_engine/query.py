@@ -83,7 +83,9 @@ def bad_weather(user, centre, radius):
     i = 0
     for l in locs:
         #print l
-        if 'outdoor' in l and not l['outdoor']:
+        if l['outdoor'] == False:
+            print False
+        if not l['outdoor']:
             indoors.append(l)
             i += 1
         if i > 9:
@@ -117,7 +119,7 @@ from geometry import Point
 
 print "\n\n\n\n\n\n\n\n\n\n"
 for u in test_users(1):
-    print get_top_10(u)
+    print bad_weather(u, Point(51.0, -3.0), 100.0)
 #    print get_10_to_map(u, Point(51.0, -3.0), 7.5)
     #x= any_2_dict(get_top_10(u))[2]
     #print x['feature']
