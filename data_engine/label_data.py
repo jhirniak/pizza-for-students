@@ -92,17 +92,7 @@ def process_data(csvfile, fieldmap, fixed={}, default={}, delimiter=',', quotech
             
 
 def dict2loc(d):    
-    """
-    print d
-    print [ ds for ds in bools ]
-    if len(d['activities']) > 0:
-	    print d
-    if len(d['features']) > 0:
-	    print d
-    if len(d['age_groups']) > 0:
-	    print d
-    """
-    return Location(d['location'], d['type'], d['name'], [ ds for ds in bools if d[ds] ], d['features'], d['description'])
+    return Location(d['location'], d['type'], d['name'], [ ds for ds in bools if d[ds] ], d['age_groups'], d['features'], d['description'], d['outdoor'])
 
 def dict2area():
     pass
@@ -120,7 +110,7 @@ museums = process_data(csvdata[0], fieldmap=fieldmap, fixed={'type' : 'Museum', 
 
 # Parks and green spaces
 fieldmap = bools_to_one('Facilities')
-fieldmap.update({'name' : 'Name', 'address' : 'Address', 'features' : 'Facilities', 'age_groups' : 'Facilities', 'location' : 'Location'})
+fieldmap.update({'name' : 'Name', 'address' : 'Address', 'features' : 'Facilities', 'age_groups' : 'Facilities', 'location' : 'Location', 'postcode' : 'Postcode', 'telephone': 'Telephone', 'email': 'Email', 'open': 'Opening hours'})
 parks = process_data(csvdata[1], fieldmap=fieldmap, fixed={'type' : 'Park', 'nature' : True, 'learning' : True, 'outdoor' : True}, default={})
 
 # Monuments in parks and green spaces
@@ -131,12 +121,12 @@ monuments = process_data(csvdata[2], fieldmap=fieldmap, fixed={'type' : 'History
 # Play areas
 fieldmap = bools_to_one('Play facilities')
 fieldmap.update({'name' : 'Site', 'features' : 'Play facilities', 'activities': 'Play facilities', 'location' : 'Location map', 'age_groups' : 'Play facilities', 'address': 'Address', 'postcode': 'Postcode', 'telephone': 'Telephone'})
-play_areas = process_data(csvdata[3], fieldmap=fieldmap, fixed={'type' : 'Play Area', 'sport' : True, 'friendly' : True, 'nature' : 'True', 'outdoor' : True}, default={})
+play_areas = process_data(csvdata[3], fieldmap=fieldmap, fixed={'type' : 'Play area', 'sport' : True, 'friendly' : True, 'nature' : 'True', 'outdoor' : True}, default={})
 
 # Community centres
 fieldmap = bools_to_one('Facilities')
 fieldmap.update({'name' : 'Name', 'features' : 'Facilities', 'age_groups' : 'Facilities', 'location' : 'Location'})
-community_centres = process_data(csvdata[4], fieldmap=fieldmap, fixed={'type' : 'Community Centre', 'friendly' : True, 'learning' : True, 'outdoor' : False}, default={})
+community_centres = process_data(csvdata[4], fieldmap=fieldmap, fixed={'type' : 'Community centre', 'friendly' : True, 'learning' : True, 'outdoor' : False}, default={})
 
 # Outdoor education providers
 fieldmap = bools_to_one('Activities')
@@ -156,22 +146,31 @@ sport_facilities = process_data(csvdata[6], fieldmap=fieldmap, fixed={'type' : '
 #test_locations = process_data(csvdata[7], fieldmap=fieldmap, fixed={'friendly' : True}, default={})
 
 r = museums + parks + monuments + play_areas + community_centres + outdoor_educators + sport_facilities #+ test_locations
-print play_areas
+#print play_areas
 
+#print parks
+
+#print r
 data = map(dict2loc, r)
+#print data
 
+"""
+for d in data:
+    if not d.outdoor:
+        print False
+"""
 
+"""
 for x in r:
     p = x['age_groups']
     n = x['name']
     o = x['outdoor']
     a = x['activities']
     f = x['features']
-    """
-    if len(a) > 0:
-	   print n, f, a
+    if not o:
+	   print n, o
 	   print "---"
-    """
+"""
 
 """
 counter = 0
@@ -179,6 +178,15 @@ for x in r:
     if isinstance(x['location'], Point) and x['location'].x != 51.0 and x['location'].y != -3.0:
         counter += 1    
     else:
+        print x
+print counter
+"""
+
+"""
+counter = 0
+for x in r:
+    if 'outdoor' not in x:
+        counter += 1
         print x
 print counter
 """

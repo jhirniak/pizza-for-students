@@ -18,7 +18,7 @@ def between(boundary, node):
     if not node:
         return []
 
-    if boundary.contains(node.location()):
+    if boundary.contains(node.location):
         return [node] + between(boundary, node.left_child) + between(boundary, node.right_child)
     else:
         return []
@@ -40,7 +40,7 @@ def kdtree(nodes, key, depth=0):
  
     # Create node and construct subtrees
     node = Node()
-    node.location = nodes[median].location
+    node.location = Point(nodes[median].x, nodes[median].y)
     node.data = nodes[median]
     node.left_child = kdtree(nodes[:median], key, depth + 1)
     node.right_child = kdtree(nodes[median + 1:], key, depth + 1)

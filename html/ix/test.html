@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <title>vis test</title>
+    
+    <script src="assets/d3.js"></script>
+    <script src="assets/jquery.js"></script>
+    <script src="menuLoader.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+
+  </head>
+  <body>
+    
+    <h1>wob</h1>
+
+    <div id="viz"> </div>
+      
+    <script>
+        object = [
+                    [
+                      [['cafe', 2], ['jogging', 3], ['cinema1', 5]],
+                      [['cafe2', 3], ['jogging2', 5], ['cinema2', 3]],
+                      [['cafe3', 1], ['jogging3', 2], ['cinema3', 2]],
+                      [['cafe3', 1], ['jogging3', 2], ['cinema3', 2]],
+                      [['cafe3', 1], ['jogging3', 2], ['cinema3', 2]],
+                      [['cafe3', 1], ['jogging3', 2], ['cinema3', 2]],
+                      [['cafe3', 1], ['jogging3', 2], ['cinema3', 2]]
+                    ],
+                    [
+                      [['cafe', 2], ['jogging', 3], ['cinema1', 5]],
+                      [['cafe2', 3], ['jogging2', 5], ['cinema2', 3]],
+                      [['cafe3', 1], ['jogging3', 2], ['cinema3', 2]],
+                      [['cafe3', 1], ['jogging3', 2], ['cinema3', 2]],
+                      [['cafe3', 1], ['jogging3', 2], ['cinema3', 2]],
+                      [['cafe3', 1], ['jogging3', 2], ['cinema3', 2]],
+                      [['cafe3', 1], ['jogging3', 2], ['cinema3', 2]]
+                    ],
+                    [
+                      [['cafe', 2], ['jogging', 3], ['cinema1', 5]],
+                      [['cafe2', 3], ['jogging2', 5], ['cinema2', 3]],
+                      [['cafe3', 1], ['jogging3', 2], ['cinema3', 2]],
+                      [['cafe3', 1], ['jogging3', 2], ['cinema3', 2]],
+                      [['cafe3', 1], ['jogging3', 2], ['cinema3', 2]],
+                      [['cafe3', 1], ['jogging3', 2], ['cinema3', 2]],
+                      [['cafe3', 1], ['jogging3', 2], ['cinema3', 2]]
+                    ]
+        ];
+        loadMenu('#viz',null, Date.now(), 1100);
+    </script>
+    <div style="height: 300px; width: 300px; background-color: black"></div>
+</body>
+</html>

@@ -2,17 +2,15 @@ from geometry import Point, Area
 from labels import bools
 
 class Rating:
-    def __init__(self, valid=[]):
+    def __init__(self, valid=[], age_groups=[]):
         self.rating = { b : False for b in bools }
         for v in valid:
             self.rating[v] = True
+        self.age_groups = age_groups
 
     def get_rating(self, label):
-        if label in self.rating:
-            return self.rating[label]
-        else:
-            return False
-
+        return self.rating[label]
+        
     def add_rating(self, label, rating=None):
         if label in self.rating:
             self.rating[label] = value
@@ -54,23 +52,35 @@ class Feature:
         return feature in self.feature
 
 class Description:
-    def __init__(self, description=''):
+    def __init__(self, description='', outdoor=True):
         self.description = description
+        self.outdoor = outdoor
     
 class Location(Point, Rating, Feature, Description):
-    def __init__(self, location, cat='', name='', rating=[], feature=[], description=''):
+    def __init__(self, location, cat='', name='', rating=[], age_groups=[], feature=[], description='', outdoor=True):
         Point.__init__(self, location.x, location.y)
+        self.geo = (self.x, self.y) # redundant, but may be useful for Kuba
         self.name = name
         self.type = cat
         Rating.__init__(self, rating)
+        self.age_groups = age_groups
         Feature.__init__(self, feature)
-        Description.__init__(self, description)
+        Description.__init__(self, description, outdoor)
 
     def latitude(self):
         return self.x
 
     def longitude(self):
         return self.y
+
+    def add_rating(self, score):
+        self.rating = score
+
+    def has_age_groups(self):
+        return len(self.age_groups) > 0
+
+    def proper_age(self, age):
+        return age in self.age_groups
 
 class Place(Area, Rating, Feature, Description):
     def __init__(self, name, convex, feature=[]):
