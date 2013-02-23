@@ -1,0 +1,142 @@
+
+ <!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+ <!--[if lte IE 8]>
+     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" />
+ <![endif]-->
+</head>
+<body>
+<div id="map" style="width: 1080px; height: 700px"></div>
+
+<script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+<script>
+
+var map = L.map('map').setView([55.945, -3.187], 13);
+var infList = new Array();
+infList[0] = {name: "Appleton Tower", coordinates: [55.944436,-3.186819]};
+infList[1] = {name: "Inspace", coordinates: [55.944904, -3.186733]};
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 18
+}).addTo(map);
+
+
+//Create Layers
+var infLayer = L.layerGroup([]);
+var museumAndGalleriesLayer = L.layerGroup([]);
+var parksandGreenSpacesLayer = L.layerGroup([]);
+var historicalLayer = L.layerGroup([]);
+var cemetariesLayer = L.layerGroup([]);
+var outdoorEducationLayer = L.layerGroup([]);
+var communityCentresLayer = L.layerGroup([]);
+var mobileLibraryLayer = L.layerGroup([]);
+var playAreasLayer = L.layerGroup([]);
+var sportsAndRecLayer = L.layerGroup([]);
+
+//Markers
+var MapMarker = L.Icon.extend({
+    options: {
+        iconSize:     [32, 37],
+        //iconAnchor:   [22, 94],
+        //shadowAnchor: [4, 62],
+        //popupAnchor:  [-3, -76]
+    }
+});
+
+var museumMarker = new MapMarker({iconUrl: 'markers/museum.png'}),
+    parksMarker = new MapMarker({iconUrl: 'markers/park.png'}),
+    historicalMarker = new MapMarker({iconUrl: 'markers/historical.png'});
+    cemetaryMarker = new MapMarker({iconUrl: 'markers/grave.png'});
+    outdoorEducationMarker = new MapMarker({iconUrl: 'markers/outdooreducation.png'});
+    communityCentreMarker = new MapMarker({iconUrl: 'markers/communitycenter.png'});
+    libraryMarker = new MapMarker({iconUrl: 'markers/library.png'});
+    sportsMarker = new MapMarker({iconUrl: 'markers/sports.png'});
+    playAreaMarker = new MapMarker({iconUrl: 'markers/playgroung.png'});
+
+//Add Informatics buildings
+for (var i = 0; i < infList.length; i++) {
+    infLayer.addLayer(L.marker(infList[i].coordinates).bindPopup(infList[i].name));
+}
+
+//Display museums
+/*for (var i = 0; i < museumList.length; i++) {
+    museumLayer.addLayer(L.marker(museumList[i].coordinates, {icon: museumMarker}).bindPopup(museumList[i].name));
+}*/
+
+
+//Add Parks
+/*for (var i = 0; i < parksList.length; i++) {
+    parksLayer.addLayer(L.marker(parksList[i].coordinates, {icon: parksMarker}).bindPopup(parksList[i].name));
+}*/
+
+
+//Add Historical Sites
+/*for (var i = 0; i < historicalList.length; i++) {
+    historicalLayer.addLayer(L.marker(historicalLayer[i].coordinates, {icon: historicalMarker}).bindPopup(historicalLayer[i].name));
+}*/
+
+
+//Add Cemetaries
+/*for (var i = 0; i < cemetariesList.length; i++) {
+    cemetariesLayer.addLayer(L.marker(cemetariesLayer[i].coordinates, {icon: cemetaryMarker}).bindPopup(cemetariesLayer[i].name));
+}*/
+
+
+//Add Outdoor Education Centres
+/*for (var i = 0; i < outdoorEducationList.length; i++) {
+    outdoorEducationLayer.addLayer(L.marker(outdoorEducationLayer[i].coordinates, {icon: outdoorEducationMarker}).bindPopup(outdoorEducationLayer[i].name));
+}*/
+
+
+//Add Community Centres
+/*for (var i = 0; i < communityCentresList.length; i++) {
+    communityCentresLayer.addLayer(L.marker(comunityCentresLayer[i].coordinates, {icon: communityCentreMarker}).bindPopup(communityCentresLayer[i].name));
+}*/
+
+
+//Add Mobile Library Layer
+/*for (var i = 0; i < mobileLibraryList.length; i++) {
+    mobileLibraryLayer.addLayer(L.marker(mobileLibraryLayer[i].coordinates, {icon: libraryMarker}).bindPopup(mobileLibraryLayer[i].name));
+}*/
+
+
+//Add Play Areas Layer
+/*for (var i = 0; i < playAreasList.length; i++) {
+    playAreasLayer.addLayer(L.marker(playAreasLayer[i].coordinates, {icon: playAreaMarker}).bindPopup(playAreasLayer[i].name));
+}*/
+
+
+//Add Sports and Rec Layer
+/*for (var i = 0; i < sportsAndRecList.length; i++) {
+    sportsAndRecLayer.addLayer(L.marker(sportsAndReclLayer[i].coordinates, {icon: sportsMarker}).bindPopup(sportsAndRecLayer[i].name));
+}*/
+
+//Add All - possible, but might be better to add each type of feature separately - different icons for every feature.
+/*for(var i = 0; i < inList.length; i++) {
+    for (var j = 0; j < inList[i].length; j++) {
+        
+    }
+}*/
+
+
+//Add Layers to Map
+infLayer.addTo(map);
+museumAndGalleriesLayer.addTo(map);
+parksandGreenSpacesLayer.addTo(map);
+historicalLayer.addTo(map);
+cemetariesLayer.addTo(map);
+outdoorEducationLayer.addTo(map);
+communityCentresLayer.addTo(map);
+mobileLibraryLayer.addTo(map);
+playAreasLayer.addTo(map);
+sportsAndRecLayer.addTo(map);
+
+//GeoLocation
+//Nodejs - https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager
+
+
+</script>
+</body>
+</html>
